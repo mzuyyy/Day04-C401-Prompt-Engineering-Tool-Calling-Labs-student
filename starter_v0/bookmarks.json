@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "GPT-5",
+    "url": "https://openai.com/gpt-5",
+    "note": "",
+    "tags": [],
+    "saved_at": "2026-06-02T14:05:18"
+  },
+  {
+    "id": 2,
+    "title": "AI 2025",
+    "url": "https://arstechnica.com/ai-2025",
+    "note": "",
+    "tags": [
+      "AI-news"
+    ],
+    "saved_at": "2026-06-02T14:06:39"
+  }
+]
