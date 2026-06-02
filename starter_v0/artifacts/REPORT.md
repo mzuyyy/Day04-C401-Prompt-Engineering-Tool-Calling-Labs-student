@@ -2,8 +2,8 @@
 
 ## Team
 
-- Team: 047
-- Members: blinh
+- Team: 1 - Zone 11 - C401
+- Members: Bùi Hoàng Linh - 2A202600804, Hoàng Trung Quân - 2A202600720, Mai Ngọc Duy - 2A202600736
 - Provider/model: OpenRouter / openai/gpt-4o-mini
 
 ---
