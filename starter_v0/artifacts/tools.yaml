@@ -116,3 +116,53 @@ tools:
         max_pages: {type: integer, default: 5, description: "Số trang"}
         max_chars: {type: integer, default: 8000, description: "Số ký tự"}
       required: [arxiv_url]
+
+  # ---------------- Team tools ----------------
+  - name: summarize_url
+    description: "Tóm tắt một URL cụ thể thành markdown. Chỉ dùng khi user cung cấp URL rõ ràng; nếu thiếu URL thì dùng clarify."
+    parameters:
+      type: object
+      properties:
+        url: {type: string, default: "", description: "URL cần đọc và tóm tắt"}
+        summary_style: {type: string, enum: [brief, bullets, detailed], default: "brief", description: "Kiểu tóm tắt"}
+        language: {type: string, enum: [vi, en], default: "vi", description: "Ngôn ngữ đầu ra"}
+        max_points: {type: integer, default: 5, description: "Số ý chính tối đa"}
+      required: [url]
+
+  - name: credibility_check
+    description: "Đánh giá nhanh độ tin cậy của một nguồn hoặc claim phục vụ research triage. Không thay thế fact-check đầy đủ."
+    parameters:
+      type: object
+      properties:
+        url: {type: string, default: "", description: "URL hoặc nguồn cần đánh giá"}
+        claim: {type: string, default: "", description: "Claim cụ thể cần kiểm tra nếu có"}
+        check_depth: {type: string, enum: [quick, standard], default: "standard", description: "Mức kiểm tra heuristic"}
+      required: []
+
+  - name: digest_builder
+    description: "Tạo research digest, executive brief hoặc bản tin có cấu trúc. Phải gọi tool này khi user yêu cầu digest/brief/bản tin/gom thành, kể cả khi trước đó đã gọi lookup/social_search/papers để thu thập nguồn. Tool này không tự fetch dữ liệu mới."
+    parameters:
+      type: object
+      properties:
+        topic: {type: string, default: "", description: "Chủ đề digest"}
+        sources:
+          type: array
+          default: []
+          items: {type: string, enum: [web, social, papers, policy, url]}
+          description: "Nhóm nguồn đã dùng hoặc muốn đưa vào digest"
+        language: {type: string, enum: [vi, en], default: "vi", description: "Ngôn ngữ đầu ra"}
+        template: {type: string, enum: [daily_ai_vn, executive, research_brief], default: "research_brief", description: "Khuôn digest"}
+        max_items: {type: integer, default: 5, description: "Số item tối đa"}
+        items:
+          type: array
+          default: []
+          description: "Các item đã có để đưa vào digest"
+          items:
+            type: object
+            properties:
+              title: {type: string}
+              url: {type: string}
+              source: {type: string}
+              summary: {type: string}
+              section: {type: string}
+      required: [topic]

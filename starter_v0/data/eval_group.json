@@ -3,5 +3,133 @@
   "dataset_role": "group",
   "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "cases": [
+    {
+      "id": "G01_summarize_url_brief_vi",
+      "phase": "B", "suite": "group",
+      "query": "Tóm tắt ngắn bằng tiếng Việt URL này: https://openai.com/research",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "summarize_url", "args": {"url": "https://openai.com/research", "summary_style": "brief", "language": "vi"}}]},
+      "metadata": {"skill": "team_summarize_url", "difficulty": "easy", "what_it_tests": "URL cụ thể + yêu cầu tóm tắt ngắn tiếng Việt → summarize_url, không lookup."}
+    },
+    {
+      "id": "G02_summarize_url_bullets_en",
+      "phase": "B", "suite": "group",
+      "query": "Summarize this page in English as 4 bullet points: https://www.anthropic.com/news",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "summarize_url", "args": {"url": "https://www.anthropic.com/news", "summary_style": "bullets", "language": "en", "max_points": 4}}]},
+      "metadata": {"skill": "team_summarize_url_args", "difficulty": "medium", "what_it_tests": "Trích style=bullets, language=en, max_points=4."}
+    },
+    {
+      "id": "G03_credibility_url",
+      "phase": "B", "suite": "group",
+      "query": "Kiểm tra nguồn này có đáng tin để trích dẫn không: https://www.reuters.com/technology/",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "credibility_check", "args": {"url": "https://www.reuters.com/technology/", "check_depth": "standard"}}]},
+      "metadata": {"skill": "team_credibility_url", "difficulty": "easy", "what_it_tests": "Đánh giá độ tin cậy của URL → credibility_check."}
+    },
+    {
+      "id": "G04_credibility_claim",
+      "phase": "B", "suite": "group",
+      "query": "Đánh giá nhanh claim này có đáng tin không: GPT-5 đã được dùng trong mọi bệnh viện ở Mỹ.",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "credibility_check", "args": {}}]},
+      "metadata": {"skill": "team_credibility_claim", "difficulty": "medium", "what_it_tests": "Claim không có URL nhưng có yêu cầu đánh giá nhanh → credibility_check với claim và quick."}
+    },
+    {
+      "id": "G05_digest_builder_daily_ai",
+      "phase": "B", "suite": "group",
+      "query": "Từ các item research đã có, tạo digest AI hôm nay bằng tiếng Việt cho nguồn web và social, tối đa 6 mục.",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "digest_builder", "args": {"topic": "AI hôm nay", "sources": ["web", "social"], "language": "vi", "template": "daily_ai_vn", "max_items": 6}}]},
+      "metadata": {"skill": "team_digest_builder", "difficulty": "medium", "what_it_tests": "Dữ liệu đã có + yêu cầu tạo digest → gọi digest_builder trực tiếp."}
+    },
+    {
+      "id": "G06_digest_builder_executive",
+      "phase": "B", "suite": "group",
+      "query": "Using already collected items, build an executive research brief about robotics from papers and web sources, maximum 3 items.",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [
+        {"name": "digest_builder", "args": {"topic": "robotics", "sources": ["papers", "web"], "language": "en", "template": "executive", "max_items": 3}},
+        {"name": "lookup", "args": {"query": "robotics", "max_results": 3}},
+        {"name": "papers", "args": {"query": "robotics", "max_results": 3}}
+      ]},
+      "metadata": {"skill": "team_digest_builder_args", "difficulty": "medium", "what_it_tests": "Already collected items + executive brief → digest_builder với template=executive."}
+    },
+    {
+      "id": "G07_multi_missing_url_then_summarize",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tóm tắt URL này thành 5 gạch đầu dòng giúp mình"},
+        {"role": "user", "content": "Mình quên gửi link"},
+        {"role": "user", "content": "Đây nhé: https://openai.com/blog"}
+      ],
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "summarize_url", "args": {"url": "https://openai.com/blog", "summary_style": "bullets", "max_points": 5}}]},
+      "metadata": {"skill": "team_multiturn_summarize_url", "difficulty": "hard", "what_it_tests": "Carry yêu cầu bullets=5 từ lượt đầu, dùng URL được bổ sung ở lượt cuối."}
+    },
+    {
+      "id": "G08_multi_change_summary_style",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Summarize https://www.anthropic.com/research briefly"},
+        {"role": "user", "content": "Actually make it detailed"},
+        {"role": "user", "content": "Keep the output in English"}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "summarize_url", "args": {"url": "https://www.anthropic.com/research", "summary_style": "detailed", "language": "en"}}]},
+      "metadata": {"skill": "team_multiturn_summary_correction", "difficulty": "hard", "what_it_tests": "Latest turn/correction changes summary_style from brief to detailed and preserves URL."}
+    },
+    {
+      "id": "G09_multi_credibility_url_then_claim",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Kiểm tra nguồn này đáng tin không: https://www.bbc.com/news/technology"},
+        {"role": "user", "content": "Claim cần kiểm tra là: AI đã thay thế toàn bộ lập trình viên junior"},
+        {"role": "user", "content": "Làm mức standard nhé"}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "credibility_check", "args": {"url": "https://www.bbc.com/news/technology", "claim": "AI đã thay thế toàn bộ lập trình viên junior", "check_depth": "standard"}}]},
+      "metadata": {"skill": "team_multiturn_credibility", "difficulty": "hard", "what_it_tests": "Carry URL từ lượt 1, claim từ lượt 2, depth từ lượt 3."}
+    },
+    {
+      "id": "G10_multi_digest_sources_update",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tạo research digest về climate tech từ các item đã có, nguồn web"},
+        {"role": "user", "content": "Thêm cả source papers nữa"},
+        {"role": "user", "content": "Dùng dạng executive, tối đa 4 items"}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "digest_builder", "args": {"topic": "climate tech", "sources": ["web", "papers"], "template": "executive", "max_items": 4}}]},
+      "metadata": {"skill": "team_multiturn_digest_update", "difficulty": "hard", "what_it_tests": "Multi-turn cập nhật sources và template cho digest_builder."}
+    },
+    {
+      "id": "G11_multi_switch_from_lookup_to_digest",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tìm tin AI hôm nay trên web"},
+        {"role": "user", "content": "Sau đó gom thành bản tin AI tiếng Việt"},
+        {"role": "user", "content": "Dùng template daily_ai_vn"}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [
+        {"name": "lookup", "args": {"query": "AI", "topic": "news", "timeframe": "day"}},
+        {"name": "digest_builder", "args": {"sources": ["web"], "language": "vi", "template": "daily_ai_vn"}}
+      ]},
+      "metadata": {"skill": "team_multiturn_lookup_then_digest", "difficulty": "hard", "what_it_tests": "Request cần collection tool trước rồi digest_builder, không chỉ gọi một tool."}
+    },
+    {
+      "id": "G12_multi_missing_source_for_credibility",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Kiểm tra xem nguồn này có đáng tin không"},
+        {"role": "user", "content": "Nguồn đây: https://example.com/ai-rumor"},
+        {"role": "user", "content": "Chỉ cần quick check"}
+      ],
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "credibility_check", "args": {"url": "https://example.com/ai-rumor", "check_depth": "quick"}}]},
+      "metadata": {"skill": "team_multiturn_credibility_missing_source", "difficulty": "medium", "what_it_tests": "Thiếu URL ban đầu, sau đó dùng URL được bổ sung và depth=quick."}
+    }
+  ]
 }

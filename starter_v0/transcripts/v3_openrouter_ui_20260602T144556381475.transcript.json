@@ -1,0 +1,28 @@
+{
+  "transcript_id": "v3_openrouter_ui_20260602T144556381475",
+  "version": "v3",
+  "artifact_version": "v3+p8f381070f15b+t9a1ca2606c1b",
+  "prompt_hash": "8f381070f15be19c7f3898430475865ff330b6f5830ae4fd1ce6e00d983d9ed1",
+  "tools_hash": "9a1ca2606c1bc45afa4d5b6854c9b530c4dfc7022926e14567241628572085ec",
+  "provider": "openrouter",
+  "model": "mistralai/mistral-small-3.1-24b-instruct:free",
+  "system_prompt": "D:\\Coding\\VinUni\\Day04\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "D:\\Coding\\VinUni\\Day04\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student\\starter_v0\\artifacts\\tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-06-02T14:45:56",
+  "updated_at": "2026-06-02T14:46:01",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-06-02T14:46:00",
+      "user": "hello",
+      "status": "provider_error",
+      "assistant_text": null,
+      "rounds": [],
+      "tool_events": [],
+      "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found for mistralai/mistral-small-3.1-24b-instruct:free.', 'code': 404}, 'user_id': 'user_2vXQAbFtrFymwOpNlO1EIEvJVhp'}",
+      "ended_at": "2026-06-02T14:46:01"
+    }
+  ]
+}

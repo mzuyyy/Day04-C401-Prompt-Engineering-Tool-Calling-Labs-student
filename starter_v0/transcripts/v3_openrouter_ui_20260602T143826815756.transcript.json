@@ -1,0 +1,557 @@
+{
+  "transcript_id": "v3_openrouter_ui_20260602T143826815756",
+  "version": "v3",
+  "artifact_version": "v3+p8f381070f15b+t9a1ca2606c1b",
+  "prompt_hash": "8f381070f15be19c7f3898430475865ff330b6f5830ae4fd1ce6e00d983d9ed1",
+  "tools_hash": "9a1ca2606c1bc45afa4d5b6854c9b530c4dfc7022926e14567241628572085ec",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "D:\\Coding\\VinUni\\Day04\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "D:\\Coding\\VinUni\\Day04\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student\\starter_v0\\artifacts\\tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-06-02T14:38:26",
+  "updated_at": "2026-06-02T14:39:43",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-06-02T14:38:33",
+      "user": "Tìm giúp tôi paper về AI ",
+      "status": "answered",
+      "assistant_text": "Here are some recent papers related to AI:\n\n1. **[AI prediction leads people to forgo guaranteed rewards](http://arxiv.org/abs/2603.28944v1)**  \n   - **Authors**: Aoi Naito, Hirokazu Shirado  \n   - **Summary**: This paper explores how belief in AI's predictive authority can lead individuals to forgo guaranteed rewards, significantly affecting decision-making.  \n   - **Published**: March 30, 2026  \n   - **[PDF Link](https://arxiv.org/pdf/2603.28944v1)**\n\n2. **[Foundations of GenIR](http://arxiv.org/abs/2501.02842v1)**  \n   - **Authors**: Qingyao Ai, Jingtao Zhan, Yiqun Liu  \n   - **Summary**: This chapter discusses the impact of generative AI models on information access systems, detailing information generation and synthesis.  \n   - **Published**: January 6, 2025  \n   - **[PDF Link](https://arxiv.org/pdf/2501.02842v1)**\n\n3. **[Competing Visions of Ethical AI: A Case Study of OpenAI](http://arxiv.org/abs/2601.16513v1)**  \n   - **Authors**: Melissa Wilfley, Mengting Ai, Madelyn Rose Sanfilippo  \n   - **Summary**: This study analyzes OpenAI's ethical discourse, revealing a dominance of safety and risk communication without applying academic ethics frameworks.  \n   - **Published**: January 23, 2026  \n   - **[PDF Link](https://arxiv.org/pdf/2601.16513v1)**\n\n4. **[Towards The Ultimate Brain: Exploring Scientific Discovery with ChatGPT AI](http://arxiv.org/abs/2308.12400v1)**  \n   - **Author**: Gerardo Adesso  \n   - **Summary**: This paper presents a novel approach to scientific discovery using ChatGPT, demonstrating its potential for human-AI collaboration.  \n   - **Published**: July 8, 2023  \n   - **[PDF Link](https://arxiv.org/pdf/2308.12400v1)**\n\n5. **[Meaningful human control: actionable properties for AI system development](http://arxiv.org/abs/2112.01298v2)**  \n   - **Authors**: Luciano Cavalcante Siebert et al.  \n   - **Summary**: This paper identifies four actionable properties for AI systems to ensure meaningful human control, addressing responsibility gaps in autonomous systems.  \n   - **Published**: November 25, 2021  \n   - **[PDF Link](https://arxiv.org/pdf/2112.01298v2)**\n\nIf you need more information or specific details about any of these papers, feel free to ask!",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "papers",
+              "args": {
+                "query": "AI",
+                "max_results": 5
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "papers",
+              "args": {
+                "query": "AI",
+                "max_results": 5
+              },
+              "result": {
+                "tool": "arxiv_search",
+                "query": "AI",
+                "api_query": "all:AI",
+                "total_results": 58511,
+                "items": [
+                  {
+                    "arxiv_id": "2603.28944v1",
+                    "title": "AI prediction leads people to forgo guaranteed rewards",
+                    "summary": "Artificial intelligence (AI) is understood to affect the content of people's decisions. Here, using a behavioral implementation of the classic Newcomb's paradox in 1,305 participants, we show that AI can also change how people decide. In this paradigm, belief in predictive authority can lead individuals to constrain decision-making, forgoing a guaranteed reward. Over 40% of participants treated AI as such a predictive authority. This significantly increased the odds of forgoing the guaranteed reward by a factor of 3.39 (95% CI: 2.45-4.70) compared with random framing, and reduced earnings by 10.7-42.9%. The effect appeared across AI presentations and decision contexts and persisted even when predictions failed. When people believe AI can predict their behavior, they may self-constrain it in anticipation of that prediction.",
+                    "authors": [
+                      "Aoi Naito",
+                      "Hirokazu Shirado"
+                    ],
+                    "published": "2026-03-30T19:36:10Z",
+                    "updated": "2026-03-30T19:36:10Z",
+                    "url": "http://arxiv.org/abs/2603.28944v1",
+                    "pdf_url": "https://arxiv.org/pdf/2603.28944v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.HC",
+                    "categories": [
+                      "cs.HC"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2501.02842v1",
+                    "title": "Foundations of GenIR",
+                    "summary": "The chapter discusses the foundational impact of modern generative AI models on information access (IA) systems. In contrast to traditional AI, the large-scale training and superior data modeling of generative AI models enable them to produce high-quality, human-like responses, which brings brand new opportunities for the development of IA paradigms. In this chapter, we identify and introduce two of them in details, i.e., information generation and information synthesis. Information generation allows AI to create tailored content addressing user needs directly, enhancing user experience with immediate, relevant outputs. Information synthesis leverages the ability of generative AI to integrate and reorganize existing information, providing grounded responses and mitigating issues like model hallucination, which is particularly valuable in scenarios requiring precision and external knowledge. This chapter delves into the foundational aspects of generative models, including architecture, scaling, and training, and discusses their applications in multi-modal scenarios. Additionally, it examines the retrieval-augmented generation paradigm and other methods for corpus modeling and understanding, demonstrating how generative AI can enhance information access systems. It also summarizes potential challenges and fruitful directions for future studies.",
+                    "authors": [
+                      "Qingyao Ai",
+                      "Jingtao Zhan",
+                      "Yiqun Liu"
+                    ],
+                    "published": "2025-01-06T08:38:29Z",
+                    "updated": "2025-01-06T08:38:29Z",
+                    "url": "http://arxiv.org/abs/2501.02842v1",
+                    "pdf_url": "https://arxiv.org/pdf/2501.02842v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.IR",
+                    "categories": [
+                      "cs.IR",
+                      "cs.LG"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2601.16513v1",
+                    "title": "Competing Visions of Ethical AI: A Case Study of OpenAI",
+                    "summary": "Introduction. AI Ethics is framed distinctly across actors and stakeholder groups. We report results from a case study of OpenAI analysing ethical AI discourse. Method. Research addressed: How has OpenAI's public discourse leveraged 'ethics', 'safety', 'alignment' and adjacent related concepts over time, and what does discourse signal about framing in practice? A structured corpus, differentiating between communication for a general audience and communication with an academic audience, was assembled from public documentation. Analysis. Qualitative content analysis of ethical themes combined inductively derived and deductively applied codes. Quantitative analysis leveraged computational content analysis methods via NLP to model topics and quantify changes in rhetoric over time. Visualizations report aggregate results. For reproducible results, we have released our code at https://github.com/famous-blue-raincoat/AI_Ethics_Discourse. Results. Results indicate that safety and risk discourse dominate OpenAI's public communication and documentation, without applying academic and advocacy ethics frameworks or vocabularies. Conclusions. Implications for governance are presented, along with discussion of ethics-washing practices in industry.",
+                    "authors": [
+                      "Melissa Wilfley",
+                      "Mengting Ai",
+                      "Madelyn Rose Sanfilippo"
+                    ],
+                    "published": "2026-01-23T07:26:45Z",
+                    "updated": "2026-01-23T07:26:45Z",
+                    "url": "http://arxiv.org/abs/2601.16513v1",
+                    "pdf_url": "https://arxiv.org/pdf/2601.16513v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CY",
+                    "categories": [
+                      "cs.CY"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2308.12400v1",
+                    "title": "Towards The Ultimate Brain: Exploring Scientific Discovery with ChatGPT AI",
+                    "summary": "This paper presents a novel approach to scientific discovery using an artificial intelligence (AI) environment known as ChatGPT, developed by OpenAI. This is the first paper entirely generated with outputs from ChatGPT. We demonstrate how ChatGPT can be instructed through a gamification environment to define and benchmark hypothetical physical theories. Through this environment, ChatGPT successfully simulates the creation of a new improved model, called GPT$^4$, which combines the concepts of GPT in AI (generative pretrained transformer) and GPT in physics (generalized probabilistic theory). We show that GPT$^4$ can use its built-in mathematical and statistical capabilities to simulate and analyze physical laws and phenomena. As a demonstration of its language capabilities, GPT$^4$ also generates a limerick about itself. Overall, our results demonstrate the promising potential for human-AI collaboration in scientific discovery, as well as the importance of designing systems that effectively integrate AI's capabilities with human intelligence.",
+                    "authors": [
+                      "Gerardo Adesso"
+                    ],
+                    "published": "2023-07-08T09:59:22Z",
+                    "updated": "2023-07-08T09:59:22Z",
+                    "url": "http://arxiv.org/abs/2308.12400v1",
+                    "pdf_url": "https://arxiv.org/pdf/2308.12400v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.OH",
+                    "categories": [
+                      "cs.OH"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2112.01298v2",
+                    "title": "Meaningful human control: actionable properties for AI system development",
+                    "summary": "How can humans remain in control of artificial intelligence (AI)-based systems designed to perform tasks autonomously? Such systems are increasingly ubiquitous, creating benefits - but also undesirable situations where moral responsibility for their actions cannot be properly attributed to any particular person or group. The concept of meaningful human control has been proposed to address responsibility gaps and mitigate them by establishing conditions that enable a proper attribution of responsibility for humans; however, clear requirements for researchers, designers, and engineers are yet inexistent, making the development of AI-based systems that remain under meaningful human control challenging. In this paper, we address the gap between philosophical theory and engineering practice by identifying, through an iterative process of abductive thinking, four actionable properties for AI-based systems under meaningful human control, which we discuss making use of two applications scenarios: automated vehicles and AI-based hiring. First, a system in which humans and AI algorithms interact should have an explicitly defined domain of morally loaded situations within which the system ought to operate. Second, humans and AI agents within the system should have appropriate and mutually compatible representations. Third, responsibility attributed to a human should be commensurate with that human's ability and authority to control the system. Fourth, there should be explicit links between the actions of the AI agents and actions of humans who are aware of their moral responsibility. We argue that these four properties will support practically-minded professionals to take concrete steps toward designing and engineering for AI systems that facilitate meaningful human control.",
+                    "authors": [
+                      "Luciano Cavalcante Siebert",
+                      "Maria Luce Lupetti",
+                      "Evgeni Aizenberg",
+                      "Niek Beckers",
+                      "Arkady Zgonnikov",
+                      "Herman Veluwenkamp",
+                      "David Abbink",
+                      "Elisa Giaccardi",
+                      "Geert-Jan Houben",
+                      "Catholijn M. Jonker",
+                      "Jeroen van den Hoven",
+                      "Deborah Forster",
+                      "Reginald L. Lagendijk"
+                    ],
+                    "published": "2021-11-25T11:05:37Z",
+                    "updated": "2022-05-19T15:28:01Z",
+                    "url": "http://arxiv.org/abs/2112.01298v2",
+                    "pdf_url": "https://arxiv.org/pdf/2112.01298v2",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CY",
+                    "categories": [
+                      "cs.CY",
+                      "cs.AI"
+                    ]
+                  }
+                ],
+                "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Here are some recent papers related to AI:\n\n1. **[AI prediction leads people to forgo guaranteed rewards](http://arxiv.org/abs/2603.28944v1)**  \n   - **Authors**: Aoi Naito, Hirokazu Shirado  \n   - **Summary**: This paper explores how belief in AI's predictive authority can lead individuals to forgo guaranteed rewards, significantly affecting decision-making.  \n   - **Published**: March 30, 2026  \n   - **[PDF Link](https://arxiv.org/pdf/2603.28944v1)**\n\n2. **[Foundations of GenIR](http://arxiv.org/abs/2501.02842v1)**  \n   - **Authors**: Qingyao Ai, Jingtao Zhan, Yiqun Liu  \n   - **Summary**: This chapter discusses the impact of generative AI models on information access systems, detailing information generation and synthesis.  \n   - **Published**: January 6, 2025  \n   - **[PDF Link](https://arxiv.org/pdf/2501.02842v1)**\n\n3. **[Competing Visions of Ethical AI: A Case Study of OpenAI](http://arxiv.org/abs/2601.16513v1)**  \n   - **Authors**: Melissa Wilfley, Mengting Ai, Madelyn Rose Sanfilippo  \n   - **Summary**: This study analyzes OpenAI's ethical discourse, revealing a dominance of safety and risk communication without applying academic ethics frameworks.  \n   - **Published**: January 23, 2026  \n   - **[PDF Link](https://arxiv.org/pdf/2601.16513v1)**\n\n4. **[Towards The Ultimate Brain: Exploring Scientific Discovery with ChatGPT AI](http://arxiv.org/abs/2308.12400v1)**  \n   - **Author**: Gerardo Adesso  \n   - **Summary**: This paper presents a novel approach to scientific discovery using ChatGPT, demonstrating its potential for human-AI collaboration.  \n   - **Published**: July 8, 2023  \n   - **[PDF Link](https://arxiv.org/pdf/2308.12400v1)**\n\n5. **[Meaningful human control: actionable properties for AI system development](http://arxiv.org/abs/2112.01298v2)**  \n   - **Authors**: Luciano Cavalcante Siebert et al.  \n   - **Summary**: This paper identifies four actionable properties for AI systems to ensure meaningful human control, addressing responsibility gaps in autonomous systems.  \n   - **Published**: November 25, 2021  \n   - **[PDF Link](https://arxiv.org/pdf/2112.01298v2)**\n\nIf you need more information or specific details about any of these papers, feel free to ask!",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "AI",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "AI",
+            "api_query": "all:AI",
+            "total_results": 58511,
+            "items": [
+              {
+                "arxiv_id": "2603.28944v1",
+                "title": "AI prediction leads people to forgo guaranteed rewards",
+                "summary": "Artificial intelligence (AI) is understood to affect the content of people's decisions. Here, using a behavioral implementation of the classic Newcomb's paradox in 1,305 participants, we show that AI can also change how people decide. In this paradigm, belief in predictive authority can lead individuals to constrain decision-making, forgoing a guaranteed reward. Over 40% of participants treated AI as such a predictive authority. This significantly increased the odds of forgoing the guaranteed reward by a factor of 3.39 (95% CI: 2.45-4.70) compared with random framing, and reduced earnings by 10.7-42.9%. The effect appeared across AI presentations and decision contexts and persisted even when predictions failed. When people believe AI can predict their behavior, they may self-constrain it in anticipation of that prediction.",
+                "authors": [
+                  "Aoi Naito",
+                  "Hirokazu Shirado"
+                ],
+                "published": "2026-03-30T19:36:10Z",
+                "updated": "2026-03-30T19:36:10Z",
+                "url": "http://arxiv.org/abs/2603.28944v1",
+                "pdf_url": "https://arxiv.org/pdf/2603.28944v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.HC",
+                "categories": [
+                  "cs.HC"
+                ]
+              },
+              {
+                "arxiv_id": "2501.02842v1",
+                "title": "Foundations of GenIR",
+                "summary": "The chapter discusses the foundational impact of modern generative AI models on information access (IA) systems. In contrast to traditional AI, the large-scale training and superior data modeling of generative AI models enable them to produce high-quality, human-like responses, which brings brand new opportunities for the development of IA paradigms. In this chapter, we identify and introduce two of them in details, i.e., information generation and information synthesis. Information generation allows AI to create tailored content addressing user needs directly, enhancing user experience with immediate, relevant outputs. Information synthesis leverages the ability of generative AI to integrate and reorganize existing information, providing grounded responses and mitigating issues like model hallucination, which is particularly valuable in scenarios requiring precision and external knowledge. This chapter delves into the foundational aspects of generative models, including architecture, scaling, and training, and discusses their applications in multi-modal scenarios. Additionally, it examines the retrieval-augmented generation paradigm and other methods for corpus modeling and understanding, demonstrating how generative AI can enhance information access systems. It also summarizes potential challenges and fruitful directions for future studies.",
+                "authors": [
+                  "Qingyao Ai",
+                  "Jingtao Zhan",
+                  "Yiqun Liu"
+                ],
+                "published": "2025-01-06T08:38:29Z",
+                "updated": "2025-01-06T08:38:29Z",
+                "url": "http://arxiv.org/abs/2501.02842v1",
+                "pdf_url": "https://arxiv.org/pdf/2501.02842v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.IR",
+                "categories": [
+                  "cs.IR",
+                  "cs.LG"
+                ]
+              },
+              {
+                "arxiv_id": "2601.16513v1",
+                "title": "Competing Visions of Ethical AI: A Case Study of OpenAI",
+                "summary": "Introduction. AI Ethics is framed distinctly across actors and stakeholder groups. We report results from a case study of OpenAI analysing ethical AI discourse. Method. Research addressed: How has OpenAI's public discourse leveraged 'ethics', 'safety', 'alignment' and adjacent related concepts over time, and what does discourse signal about framing in practice? A structured corpus, differentiating between communication for a general audience and communication with an academic audience, was assembled from public documentation. Analysis. Qualitative content analysis of ethical themes combined inductively derived and deductively applied codes. Quantitative analysis leveraged computational content analysis methods via NLP to model topics and quantify changes in rhetoric over time. Visualizations report aggregate results. For reproducible results, we have released our code at https://github.com/famous-blue-raincoat/AI_Ethics_Discourse. Results. Results indicate that safety and risk discourse dominate OpenAI's public communication and documentation, without applying academic and advocacy ethics frameworks or vocabularies. Conclusions. Implications for governance are presented, along with discussion of ethics-washing practices in industry.",
+                "authors": [
+                  "Melissa Wilfley",
+                  "Mengting Ai",
+                  "Madelyn Rose Sanfilippo"
+                ],
+                "published": "2026-01-23T07:26:45Z",
+                "updated": "2026-01-23T07:26:45Z",
+                "url": "http://arxiv.org/abs/2601.16513v1",
+                "pdf_url": "https://arxiv.org/pdf/2601.16513v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CY",
+                "categories": [
+                  "cs.CY"
+                ]
+              },
+              {
+                "arxiv_id": "2308.12400v1",
+                "title": "Towards The Ultimate Brain: Exploring Scientific Discovery with ChatGPT AI",
+                "summary": "This paper presents a novel approach to scientific discovery using an artificial intelligence (AI) environment known as ChatGPT, developed by OpenAI. This is the first paper entirely generated with outputs from ChatGPT. We demonstrate how ChatGPT can be instructed through a gamification environment to define and benchmark hypothetical physical theories. Through this environment, ChatGPT successfully simulates the creation of a new improved model, called GPT$^4$, which combines the concepts of GPT in AI (generative pretrained transformer) and GPT in physics (generalized probabilistic theory). We show that GPT$^4$ can use its built-in mathematical and statistical capabilities to simulate and analyze physical laws and phenomena. As a demonstration of its language capabilities, GPT$^4$ also generates a limerick about itself. Overall, our results demonstrate the promising potential for human-AI collaboration in scientific discovery, as well as the importance of designing systems that effectively integrate AI's capabilities with human intelligence.",
+                "authors": [
+                  "Gerardo Adesso"
+                ],
+                "published": "2023-07-08T09:59:22Z",
+                "updated": "2023-07-08T09:59:22Z",
+                "url": "http://arxiv.org/abs/2308.12400v1",
+                "pdf_url": "https://arxiv.org/pdf/2308.12400v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.OH",
+                "categories": [
+                  "cs.OH"
+                ]
+              },
+              {
+                "arxiv_id": "2112.01298v2",
+                "title": "Meaningful human control: actionable properties for AI system development",
+                "summary": "How can humans remain in control of artificial intelligence (AI)-based systems designed to perform tasks autonomously? Such systems are increasingly ubiquitous, creating benefits - but also undesirable situations where moral responsibility for their actions cannot be properly attributed to any particular person or group. The concept of meaningful human control has been proposed to address responsibility gaps and mitigate them by establishing conditions that enable a proper attribution of responsibility for humans; however, clear requirements for researchers, designers, and engineers are yet inexistent, making the development of AI-based systems that remain under meaningful human control challenging. In this paper, we address the gap between philosophical theory and engineering practice by identifying, through an iterative process of abductive thinking, four actionable properties for AI-based systems under meaningful human control, which we discuss making use of two applications scenarios: automated vehicles and AI-based hiring. First, a system in which humans and AI algorithms interact should have an explicitly defined domain of morally loaded situations within which the system ought to operate. Second, humans and AI agents within the system should have appropriate and mutually compatible representations. Third, responsibility attributed to a human should be commensurate with that human's ability and authority to control the system. Fourth, there should be explicit links between the actions of the AI agents and actions of humans who are aware of their moral responsibility. We argue that these four properties will support practically-minded professionals to take concrete steps toward designing and engineering for AI systems that facilitate meaningful human control.",
+                "authors": [
+                  "Luciano Cavalcante Siebert",
+                  "Maria Luce Lupetti",
+                  "Evgeni Aizenberg",
+                  "Niek Beckers",
+                  "Arkady Zgonnikov",
+                  "Herman Veluwenkamp",
+                  "David Abbink",
+                  "Elisa Giaccardi",
+                  "Geert-Jan Houben",
+                  "Catholijn M. Jonker",
+                  "Jeroen van den Hoven",
+                  "Deborah Forster",
+                  "Reginald L. Lagendijk"
+                ],
+                "published": "2021-11-25T11:05:37Z",
+                "updated": "2022-05-19T15:28:01Z",
+                "url": "http://arxiv.org/abs/2112.01298v2",
+                "pdf_url": "https://arxiv.org/pdf/2112.01298v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.CY",
+                "categories": [
+                  "cs.CY",
+                  "cs.AI"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        }
+      ],
+      "ended_at": "2026-06-02T14:38:53"
+    },
+    {
+      "turn_index": 2,
+      "started_at": "2026-06-02T14:39:05",
+      "user": "Tìm giúp tôi 5 paper về security đi ",
+      "status": "answered",
+      "assistant_text": "Here are 5 recent papers related to security:\n\n1. **[The Everyday Security of Living with Conflict](http://arxiv.org/abs/2506.09580v1)**  \n   - **Authors**: Jessica McClearn, Reem Talhouk, Rikke Bjerg Jensen  \n   - **Summary**: This paper explores the everyday experiences of security within communities living with and fleeing from war, emphasizing the importance of ethnography in security research.  \n   - **Published**: June 11, 2025  \n   - **[PDF Link](https://arxiv.org/pdf/2506.09580v1)**\n\n2. **[Securing Automated Insulin Delivery Systems: A Review of Security Threats and Protective Strategies](http://arxiv.org/abs/2503.14006v2)**  \n   - **Authors**: Yuchen Niu, Siew-Kei Lam  \n   - **Summary**: This paper surveys the security landscape of Automated Insulin Delivery systems, discussing vulnerabilities, regulatory frameworks, and defense mechanisms.  \n   - **Published**: March 18, 2025  \n   - **[PDF Link](https://arxiv.org/pdf/2503.14006v2)**\n\n3. **[Formal Modelling and Security Analysis of Bitcoin's Payment Protocol](http://arxiv.org/abs/2103.08436v1)**  \n   - **Authors**: Paolo Modesti, Siamak F. Shahandashti, Patrick McCorry, Feng Hao  \n   - **Summary**: This paper presents a formal model of Bitcoin's Payment Protocol, analyzing its vulnerabilities and proposing a revised protocol to enhance security.  \n   - **Published**: March 15, 2021  \n   - **[PDF Link](https://arxiv.org/pdf/2103.08436v1)**\n\n4. **[M-Banking Security - a futuristic improved security approach](http://arxiv.org/abs/1002.1174v1)**  \n   - **Authors**: Geeta S. Navale, Swati S. Joshi, Aaradhana A. Deshmukh  \n   - **Summary**: This paper discusses enhancing security in mobile banking through innovative techniques, including steganography for data encryption.  \n   - **Published**: February 5, 2010  \n   - **[PDF Link](https://arxiv.org/pdf/1002.1174v1)**\n\n5. **[Internet Service Providers' and Individuals' Attitudes, Barriers, and Incentives to Secure IoT](http://arxiv.org/abs/2210.02137v1)**  \n   - **Authors**: Nissy Sombatruang et al.  \n   - **Summary**: This study investigates the attitudes of ISPs and individuals towards IoT security, highlighting barriers and incentives for securing IoT devices.  \n   - **Published**: October 5, 2022  \n   - **[PDF Link](https://arxiv.org/pdf/2210.02137v1)**\n\nIf you need further details or assistance, feel free to ask!",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "papers",
+              "args": {
+                "query": "security",
+                "max_results": 5
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "papers",
+              "args": {
+                "query": "security",
+                "max_results": 5
+              },
+              "result": {
+                "tool": "arxiv_search",
+                "query": "security",
+                "api_query": "all:security",
+                "total_results": 74559,
+                "items": [
+                  {
+                    "arxiv_id": "2506.09580v1",
+                    "title": "The Everyday Security of Living with Conflict",
+                    "summary": "When `cyber' is used as a prefix, attention is typically drawn to the technological and spectacular aspects of war and conflict -- and, by extension, security. We offer a different approach to engaging with and understanding security in such contexts, by foregrounding the everyday -- mundane -- experiences of security within communities living with and fleeing from war. We do so through three vignettes from our field research in Colombia, Lebanon and Sweden, respectively, and by highlighting the significance of ethnography for security research with communities living in regions afflicted by war. We conclude by setting out a call to action for security researchers and practitioners to consider such lived experiences in the design of security technology that aims to cater to the needs of communities in `global conflict and disaster regions'.",
+                    "authors": [
+                      "Jessica McClearn",
+                      "Reem Talhouk",
+                      "Rikke Bjerg Jensen"
+                    ],
+                    "published": "2025-06-11T10:18:21Z",
+                    "updated": "2025-06-11T10:18:21Z",
+                    "url": "http://arxiv.org/abs/2506.09580v1",
+                    "pdf_url": "https://arxiv.org/pdf/2506.09580v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CR",
+                    "categories": [
+                      "cs.CR"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2503.14006v2",
+                    "title": "Securing Automated Insulin Delivery Systems: A Review of Security Threats and Protective Strategies",
+                    "summary": "Automated Insulin Delivery (AID) systems represent a significant advancement in diabetes care and wearable physiological closed-loop control technologies, integrating continuous glucose monitoring, control algorithms, and insulin pumps to improve blood glucose level control and reduce the burden of patient self-management. However, their increasing dependence on wireless communication and automatic control introduces security risks that may compromise patient privacy or result in life-threatening treatment errors. This paper presents a comprehensive survey of the AID system security landscape, covering technical vulnerabilities, regulatory frameworks, and commercial security measures. In addition, we conduct a systematic review of attack vectors and defence mechanisms proposed in the literature, following the PRISMA framework. Our findings highlight critical gaps, including the lack of specific security evaluation frameworks, insufficient protections in real-world deployments, and the need for comprehensive, lightweight, and adaptive defence mechanisms. We further investigate available research resources and outline open research challenges and future directions to guide the development of more secure and reliable AID systems. By focusing on AID systems, this review offers a representative case study for examining and improving the cybersecurity of safety-critical medical wearable systems.",
+                    "authors": [
+                      "Yuchen Niu",
+                      "Siew-Kei Lam"
+                    ],
+                    "published": "2025-03-18T08:11:19Z",
+                    "updated": "2026-01-19T08:47:11Z",
+                    "url": "http://arxiv.org/abs/2503.14006v2",
+                    "pdf_url": "https://arxiv.org/pdf/2503.14006v2",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CR",
+                    "categories": [
+                      "cs.CR"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2103.08436v1",
+                    "title": "Formal Modelling and Security Analysis of Bitcoin's Payment Protocol",
+                    "summary": "The Payment Protocol standard BIP70, specifying how payments in Bitcoin are performed by merchants and customers, is supported by the largest payment processors and most widely-used wallets. The protocol has been shown to be vulnerable to refund attacks due to lack of authentication of the refund addresses. In this paper, we give the first formal model of the protocol and formalise the refund address security goals for the protocol, namely refund address authentication and secrecy. The formal model utilises communication channels as abstractions conveying security goals on which the protocol modeller and verifier can rely. We analyse the Payment Protocol confirming that it is vulnerable to an attack violating the refund address authentication security goal. Moreover, we present a concrete protocol revision proposal supporting the merchant with publicly verifiable evidence that can mitigate the attack. We verify that the revised protocol meets the security goals defined for the refund address. Hence, we demonstrate that the revised protocol is secure, not only against the existing attacks, but also against any further attacks violating the formalised security goals.",
+                    "authors": [
+                      "Paolo Modesti",
+                      "Siamak F. Shahandashti",
+                      "Patrick McCorry",
+                      "Feng Hao"
+                    ],
+                    "published": "2021-03-15T15:05:01Z",
+                    "updated": "2021-03-15T15:05:01Z",
+                    "url": "http://arxiv.org/abs/2103.08436v1",
+                    "pdf_url": "https://arxiv.org/pdf/2103.08436v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CR",
+                    "categories": [
+                      "cs.CR",
+                      "cs.FL"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "1002.1174v1",
+                    "title": "M-Banking Security - a futuristic improved security approach",
+                    "summary": "In last few decades large technology development raised various new needs. Financial sector has also no exception. People are approaching all over the world to fulfill there dreams. Any sector needs to understand changing need of customer. In order to satisfy financial need for customer banks are taking help of new technology such as internet. Only problem remain is of security. The aim of this work is to provide a secure environment in terms of security for transaction by various ways. In order to improve security we are making use of \"Steganography\" technique in the way never used before. Task of enhancing security include construction of formula for both data encryption and also for hiding pattern. Server should not process any fake request hence concept of custom \"Session id\" and \"Request id\" is introduced. Implementation of such a security constraints in banking sector not only help to serve customer in better way but also make customer confident and satisfy.",
+                    "authors": [
+                      "Geeta S. Navale",
+                      "Swati S. Joshi",
+                      "Aaradhana A. Deshmukh"
+                    ],
+                    "published": "2010-02-05T10:03:36Z",
+                    "updated": "2010-02-05T10:03:36Z",
+                    "url": "http://arxiv.org/abs/1002.1174v1",
+                    "pdf_url": "https://arxiv.org/pdf/1002.1174v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CR",
+                    "categories": [
+                      "cs.CR"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2210.02137v1",
+                    "title": "Internet Service Providers' and Individuals' Attitudes, Barriers, and Incentives to Secure IoT",
+                    "summary": "Internet Service Providers (ISPs) and individual users of Internet of Things (IoT) play a vital role in securing IoT. However, encouraging them to do so is hard. Our study investigates ISPs' and individuals' attitudes towards the security of IoT, the obstacles they face, and their incentives to keep IoT secure, drawing evidence from Japan. Due to the complex interactions of the stakeholders, we follow an iterative methodology where we present issues and potential solutions to our stakeholders in turn. For ISPs, we survey 27 ISPs in Japan, followed by a workshop with representatives from government and 5 ISPs. Based on the findings from this, we conduct semi-structured interviews with 20 participants followed by a more quantitative survey with 328 participants. We review these results in a second workshop with representatives from government and 7 ISPs. The appreciation of challenges by each party has lead to findings that are supported by all stakeholders. Securing IoT devices is neither users' nor ISPs' priority. Individuals are keen on more interventions both from the government as part of regulation and from ISPs in terms of filtering malicious traffic. Participants are willing to pay for enhanced monitoring and filtering. While ISPs do want to help users, there appears to be a lack of effective technology to aid them. ISPs would like to see more public recognition for their efforts, but internally they struggle with executive buy-in and effective means to communicate with their customers. The majority of barriers and incentives are external to ISPs and individuals, demonstrating the complexity of keeping IoT secure and emphasizing the need for relevant stakeholders in the IoT ecosystem to work in tandem.",
+                    "authors": [
+                      "Nissy Sombatruang",
+                      "Tristan Caulfield",
+                      "Ingolf Becker",
+                      "Akira Fujita",
+                      "Takahiro Kasama",
+                      "Koji Nakao",
+                      "Daisuke Inoue"
+                    ],
+                    "published": "2022-10-05T10:37:52Z",
+                    "updated": "2022-10-05T10:37:52Z",
+                    "url": "http://arxiv.org/abs/2210.02137v1",
+                    "pdf_url": "https://arxiv.org/pdf/2210.02137v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CY",
+                    "categories": [
+                      "cs.CY",
+                      "cs.CR"
+                    ]
+                  }
+                ],
+                "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Here are 5 recent papers related to security:\n\n1. **[The Everyday Security of Living with Conflict](http://arxiv.org/abs/2506.09580v1)**  \n   - **Authors**: Jessica McClearn, Reem Talhouk, Rikke Bjerg Jensen  \n   - **Summary**: This paper explores the everyday experiences of security within communities living with and fleeing from war, emphasizing the importance of ethnography in security research.  \n   - **Published**: June 11, 2025  \n   - **[PDF Link](https://arxiv.org/pdf/2506.09580v1)**\n\n2. **[Securing Automated Insulin Delivery Systems: A Review of Security Threats and Protective Strategies](http://arxiv.org/abs/2503.14006v2)**  \n   - **Authors**: Yuchen Niu, Siew-Kei Lam  \n   - **Summary**: This paper surveys the security landscape of Automated Insulin Delivery systems, discussing vulnerabilities, regulatory frameworks, and defense mechanisms.  \n   - **Published**: March 18, 2025  \n   - **[PDF Link](https://arxiv.org/pdf/2503.14006v2)**\n\n3. **[Formal Modelling and Security Analysis of Bitcoin's Payment Protocol](http://arxiv.org/abs/2103.08436v1)**  \n   - **Authors**: Paolo Modesti, Siamak F. Shahandashti, Patrick McCorry, Feng Hao  \n   - **Summary**: This paper presents a formal model of Bitcoin's Payment Protocol, analyzing its vulnerabilities and proposing a revised protocol to enhance security.  \n   - **Published**: March 15, 2021  \n   - **[PDF Link](https://arxiv.org/pdf/2103.08436v1)**\n\n4. **[M-Banking Security - a futuristic improved security approach](http://arxiv.org/abs/1002.1174v1)**  \n   - **Authors**: Geeta S. Navale, Swati S. Joshi, Aaradhana A. Deshmukh  \n   - **Summary**: This paper discusses enhancing security in mobile banking through innovative techniques, including steganography for data encryption.  \n   - **Published**: February 5, 2010  \n   - **[PDF Link](https://arxiv.org/pdf/1002.1174v1)**\n\n5. **[Internet Service Providers' and Individuals' Attitudes, Barriers, and Incentives to Secure IoT](http://arxiv.org/abs/2210.02137v1)**  \n   - **Authors**: Nissy Sombatruang et al.  \n   - **Summary**: This study investigates the attitudes of ISPs and individuals towards IoT security, highlighting barriers and incentives for securing IoT devices.  \n   - **Published**: October 5, 2022  \n   - **[PDF Link](https://arxiv.org/pdf/2210.02137v1)**\n\nIf you need further details or assistance, feel free to ask!",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "security",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "security",
+            "api_query": "all:security",
+            "total_results": 74559,
+            "items": [
+              {
+                "arxiv_id": "2506.09580v1",
+                "title": "The Everyday Security of Living with Conflict",
+                "summary": "When `cyber' is used as a prefix, attention is typically drawn to the technological and spectacular aspects of war and conflict -- and, by extension, security. We offer a different approach to engaging with and understanding security in such contexts, by foregrounding the everyday -- mundane -- experiences of security within communities living with and fleeing from war. We do so through three vignettes from our field research in Colombia, Lebanon and Sweden, respectively, and by highlighting the significance of ethnography for security research with communities living in regions afflicted by war. We conclude by setting out a call to action for security researchers and practitioners to consider such lived experiences in the design of security technology that aims to cater to the needs of communities in `global conflict and disaster regions'.",
+                "authors": [
+                  "Jessica McClearn",
+                  "Reem Talhouk",
+                  "Rikke Bjerg Jensen"
+                ],
+                "published": "2025-06-11T10:18:21Z",
+                "updated": "2025-06-11T10:18:21Z",
+                "url": "http://arxiv.org/abs/2506.09580v1",
+                "pdf_url": "https://arxiv.org/pdf/2506.09580v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CR",
+                "categories": [
+                  "cs.CR"
+                ]
+              },
+              {
+                "arxiv_id": "2503.14006v2",
+                "title": "Securing Automated Insulin Delivery Systems: A Review of Security Threats and Protective Strategies",
+                "summary": "Automated Insulin Delivery (AID) systems represent a significant advancement in diabetes care and wearable physiological closed-loop control technologies, integrating continuous glucose monitoring, control algorithms, and insulin pumps to improve blood glucose level control and reduce the burden of patient self-management. However, their increasing dependence on wireless communication and automatic control introduces security risks that may compromise patient privacy or result in life-threatening treatment errors. This paper presents a comprehensive survey of the AID system security landscape, covering technical vulnerabilities, regulatory frameworks, and commercial security measures. In addition, we conduct a systematic review of attack vectors and defence mechanisms proposed in the literature, following the PRISMA framework. Our findings highlight critical gaps, including the lack of specific security evaluation frameworks, insufficient protections in real-world deployments, and the need for comprehensive, lightweight, and adaptive defence mechanisms. We further investigate available research resources and outline open research challenges and future directions to guide the development of more secure and reliable AID systems. By focusing on AID systems, this review offers a representative case study for examining and improving the cybersecurity of safety-critical medical wearable systems.",
+                "authors": [
+                  "Yuchen Niu",
+                  "Siew-Kei Lam"
+                ],
+                "published": "2025-03-18T08:11:19Z",
+                "updated": "2026-01-19T08:47:11Z",
+                "url": "http://arxiv.org/abs/2503.14006v2",
+                "pdf_url": "https://arxiv.org/pdf/2503.14006v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.CR",
+                "categories": [
+                  "cs.CR"
+                ]
+              },
+              {
+                "arxiv_id": "2103.08436v1",
+                "title": "Formal Modelling and Security Analysis of Bitcoin's Payment Protocol",
+                "summary": "The Payment Protocol standard BIP70, specifying how payments in Bitcoin are performed by merchants and customers, is supported by the largest payment processors and most widely-used wallets. The protocol has been shown to be vulnerable to refund attacks due to lack of authentication of the refund addresses. In this paper, we give the first formal model of the protocol and formalise the refund address security goals for the protocol, namely refund address authentication and secrecy. The formal model utilises communication channels as abstractions conveying security goals on which the protocol modeller and verifier can rely. We analyse the Payment Protocol confirming that it is vulnerable to an attack violating the refund address authentication security goal. Moreover, we present a concrete protocol revision proposal supporting the merchant with publicly verifiable evidence that can mitigate the attack. We verify that the revised protocol meets the security goals defined for the refund address. Hence, we demonstrate that the revised protocol is secure, not only against the existing attacks, but also against any further attacks violating the formalised security goals.",
+                "authors": [
+                  "Paolo Modesti",
+                  "Siamak F. Shahandashti",
+                  "Patrick McCorry",
+                  "Feng Hao"
+                ],
+                "published": "2021-03-15T15:05:01Z",
+                "updated": "2021-03-15T15:05:01Z",
+                "url": "http://arxiv.org/abs/2103.08436v1",
+                "pdf_url": "https://arxiv.org/pdf/2103.08436v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CR",
+                "categories": [
+                  "cs.CR",
+                  "cs.FL"
+                ]
+              },
+              {
+                "arxiv_id": "1002.1174v1",
+                "title": "M-Banking Security - a futuristic improved security approach",
+                "summary": "In last few decades large technology development raised various new needs. Financial sector has also no exception. People are approaching all over the world to fulfill there dreams. Any sector needs to understand changing need of customer. In order to satisfy financial need for customer banks are taking help of new technology such as internet. Only problem remain is of security. The aim of this work is to provide a secure environment in terms of security for transaction by various ways. In order to improve security we are making use of \"Steganography\" technique in the way never used before. Task of enhancing security include construction of formula for both data encryption and also for hiding pattern. Server should not process any fake request hence concept of custom \"Session id\" and \"Request id\" is introduced. Implementation of such a security constraints in banking sector not only help to serve customer in better way but also make customer confident and satisfy.",
+                "authors": [
+                  "Geeta S. Navale",
+                  "Swati S. Joshi",
+                  "Aaradhana A. Deshmukh"
+                ],
+                "published": "2010-02-05T10:03:36Z",
+                "updated": "2010-02-05T10:03:36Z",
+                "url": "http://arxiv.org/abs/1002.1174v1",
+                "pdf_url": "https://arxiv.org/pdf/1002.1174v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CR",
+                "categories": [
+                  "cs.CR"
+                ]
+              },
+              {
+                "arxiv_id": "2210.02137v1",
+                "title": "Internet Service Providers' and Individuals' Attitudes, Barriers, and Incentives to Secure IoT",
+                "summary": "Internet Service Providers (ISPs) and individual users of Internet of Things (IoT) play a vital role in securing IoT. However, encouraging them to do so is hard. Our study investigates ISPs' and individuals' attitudes towards the security of IoT, the obstacles they face, and their incentives to keep IoT secure, drawing evidence from Japan. Due to the complex interactions of the stakeholders, we follow an iterative methodology where we present issues and potential solutions to our stakeholders in turn. For ISPs, we survey 27 ISPs in Japan, followed by a workshop with representatives from government and 5 ISPs. Based on the findings from this, we conduct semi-structured interviews with 20 participants followed by a more quantitative survey with 328 participants. We review these results in a second workshop with representatives from government and 7 ISPs. The appreciation of challenges by each party has lead to findings that are supported by all stakeholders. Securing IoT devices is neither users' nor ISPs' priority. Individuals are keen on more interventions both from the government as part of regulation and from ISPs in terms of filtering malicious traffic. Participants are willing to pay for enhanced monitoring and filtering. While ISPs do want to help users, there appears to be a lack of effective technology to aid them. ISPs would like to see more public recognition for their efforts, but internally they struggle with executive buy-in and effective means to communicate with their customers. The majority of barriers and incentives are external to ISPs and individuals, demonstrating the complexity of keeping IoT secure and emphasizing the need for relevant stakeholders in the IoT ecosystem to work in tandem.",
+                "authors": [
+                  "Nissy Sombatruang",
+                  "Tristan Caulfield",
+                  "Ingolf Becker",
+                  "Akira Fujita",
+                  "Takahiro Kasama",
+                  "Koji Nakao",
+                  "Daisuke Inoue"
+                ],
+                "published": "2022-10-05T10:37:52Z",
+                "updated": "2022-10-05T10:37:52Z",
+                "url": "http://arxiv.org/abs/2210.02137v1",
+                "pdf_url": "https://arxiv.org/pdf/2210.02137v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CY",
+                "categories": [
+                  "cs.CY",
+                  "cs.CR"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        }
+      ],
+      "ended_at": "2026-06-02T14:39:43"
+    }
+  ]
+}

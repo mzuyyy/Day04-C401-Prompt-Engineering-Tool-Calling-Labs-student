@@ -1,0 +1,1248 @@
+{
+  "run_id": "v3_B_group_openrouter_20260602T141653235326",
+  "version": "v3",
+  "artifact_version": "v3+p8f381070f15b+t9a1ca2606c1b",
+  "prompt_hash": "8f381070f15be19c7f3898430475865ff330b6f5830ae4fd1ce6e00d983d9ed1",
+  "tools_hash": "9a1ca2606c1bc45afa4d5b6854c9b530c4dfc7022926e14567241628572085ec",
+  "phase": "B",
+  "suite": "group",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "D:\\Coding\\VinUni\\Day04\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "D:\\Coding\\VinUni\\Day04\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student\\starter_v0\\artifacts\\tools.yaml",
+  "eval_cases": "data\\eval_group.json",
+  "dataset_id": "day04_v2_research_group",
+  "dataset_role": "group",
+  "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
+  "generated_at": "2026-06-02T14:16:53",
+  "summary": {
+    "total_cases": 12,
+    "measured_cases": 12,
+    "provider_error_cases": 0,
+    "passed_cases": 12,
+    "case_accuracy": 1.0,
+    "tool_routing_accuracy": 1.0,
+    "argument_accuracy": 1.0,
+    "multiturn_accuracy": 1.0,
+    "failure_counts": {},
+    "observed_mismatch_counts": {}
+  },
+  "results": [
+    {
+      "id": "G01_summarize_url_brief_vi",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "team_summarize_url",
+        "difficulty": "easy",
+        "what_it_tests": "URL cụ thể + yêu cầu tóm tắt ngắn tiếng Việt → summarize_url, không lookup."
+      },
+      "input": "Tóm tắt ngắn bằng tiếng Việt URL này: https://openai.com/research",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "summarize_url",
+            "args": {
+              "url": "https://openai.com/research",
+              "summary_style": "brief",
+              "language": "vi"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "summarize_url",
+            "args": {
+              "url": "https://openai.com/research",
+              "summary_style": "brief",
+              "language": "vi"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "summarize_url",
+          "args": {
+            "url": "https://openai.com/research",
+            "summary_style": "brief",
+            "language": "vi"
+          },
+          "result": {
+            "tool": "summarize_url",
+            "url": "https://openai.com/research",
+            "source": "openai.com",
+            "language": "vi",
+            "summary_style": "brief",
+            "markdown": "Research | OpenAI Skip to main content Research Products Business Developers Company Foundation (opens in a new window) Log in Try ChatGPT (opens in a new window) Research Products Business Developers Company Foundation (opens in a new window) Try ChatGPT (opens in a new window) Login OpenAI Research Pioneering research on the path to AGI We believe our research will eventually lead to artificial general intelligence, a system that can solve human-level problems. Our mission is to ensure that AGI benefits all of humanity.",
+            "items": [
+              {
+                "title": "Research | OpenAI",
+                "url": "https://openai.com/research",
+                "source": "openai.com",
+                "summary": "Research | OpenAI Skip to main content Research Products Business Developers Company Foundation (opens in a new window) Log in Try ChatGPT (opens in a new window) Research Products Business Developers Company Foundation (opens in a new window) Try ChatGPT (opens in a new window) Login OpenAI Research Pioneering research on the path to AGI We believe our research will eventually lead to artificial general intelligence, a system that can solve human-level problems. Our mission is to ensure that AGI benefits all of humanity. View research index Learn about safety Focus areas We use Deep Learning to leverage large amounts of data and advanced reasoning to train AI systems for task completion. GPT OpenAI’s GPT series models are fast, versatile, and cost-efficient AI systems designed to understand context, generate content, and reason across text, images, and more. A new class of intelligence for real work Release Apr 23, 2026 12 min read Our most capable and efficient frontier model for professional work Release Mar 5, 2026 16 min read Smoother, more useful everyday conversations Release Mar 3, 2026 5 min read o series OpenAI’s o series models are advanced reasoning AI systems that use chain-of-thought processes to solve complex STEM problems through logical, step-by-step analysis.",
+                "section": "URL Summary"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G02_summarize_url_bullets_en",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "team_summarize_url_args",
+        "difficulty": "medium",
+        "what_it_tests": "Trích style=bullets, language=en, max_points=4."
+      },
+      "input": "Summarize this page in English as 4 bullet points: https://www.anthropic.com/news",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "summarize_url",
+            "args": {
+              "url": "https://www.anthropic.com/news",
+              "summary_style": "bullets",
+              "language": "en",
+              "max_points": 4
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "summarize_url",
+            "args": {
+              "url": "https://www.anthropic.com/news",
+              "summary_style": "bullets",
+              "language": "en",
+              "max_points": 4
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "summarize_url",
+          "args": {
+            "url": "https://www.anthropic.com/news",
+            "summary_style": "bullets",
+            "language": "en",
+            "max_points": 4
+          },
+          "result": {
+            "tool": "summarize_url",
+            "url": "https://www.anthropic.com/news",
+            "source": "anthropic.com",
+            "language": "en",
+            "summary_style": "bullets",
+            "markdown": "- Skip to main content Skip to footer Research Economic Futures Commitments Learn News Try Claude Newsroom Press inquires press@anthropic.com Non-media inquiries How to get support Media assets Download press kit Introducing Claude Opus 4.8 Product May 28, 2026 An upgrade to our Opus class of models, with stronger performance across coding, agentic tasks, and professional work, and the consistency to handle long-running work.\n- Product Apr 17, 2026 Introducing Claude Design by Anthropic Labs Today, we’re launching Claude Design, a new Anthropic Labs product that lets you collaborate with Claude to create polished visual work like designs, prototypes, slides, one-pagers, and more.\n- Announcements Apr 7, 2026 Project Glasswing A new initiative that brings together Amazon Web Services, Anthropic, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorganChase, the Linux Foundation, Microsoft, NVIDIA, and Palo Alto Networks in an effort to secure the world's most critical software.\n- Mar 18, 2026 What 81,000 people want from AI We invited Claude.ai users to share how they use AI, what they dream it could make possible, and what they fear it might do.",
+            "items": [
+              {
+                "title": "Newsroom \\ Anthropic",
+                "url": "https://www.anthropic.com/news",
+                "source": "anthropic.com",
+                "summary": "Skip to main content Skip to footer Research Economic Futures Commitments Learn News Try Claude Newsroom Press inquires press@anthropic.com Non-media inquiries How to get support Media assets Download press kit Introducing Claude Opus 4.8 Product May 28, 2026 An upgrade to our Opus class of models, with stronger performance across coding, agentic tasks, and professional work, and the consistency to handle long-running work. Product Apr 17, 2026 Introducing Claude Design by Anthropic Labs Today, we’re launching Claude Design, a new Anthropic Labs product that lets you collaborate with Claude to create polished visual work like designs, prototypes, slides, one-pagers, and more. Announcements Apr 7, 2026 Project Glasswing A new initiative that brings together Amazon Web Services, Anthropic, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorganChase, the Linux Foundation, Microsoft, NVIDIA, and Palo Alto Networks in an effort to secure the world's most critical software. Mar 18, 2026 What 81,000 people want from AI We invited Claude.ai users to share how they use AI, what they dream it could make possible, and what they fear it might do.",
+                "section": "URL Summary"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G03_credibility_url",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "team_credibility_url",
+        "difficulty": "easy",
+        "what_it_tests": "Đánh giá độ tin cậy của URL → credibility_check."
+      },
+      "input": "Kiểm tra nguồn này có đáng tin để trích dẫn không: https://www.reuters.com/technology/",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "credibility_check",
+            "args": {
+              "url": "https://www.reuters.com/technology/",
+              "check_depth": "standard"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "credibility_check",
+            "args": {
+              "url": "https://www.reuters.com/technology/",
+              "check_depth": "standard"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "credibility_check",
+          "args": {
+            "url": "https://www.reuters.com/technology/",
+            "check_depth": "standard"
+          },
+          "result": {
+            "tool": "credibility_check",
+            "url": "https://www.reuters.com/technology/",
+            "claim": "",
+            "check_depth": "standard",
+            "rating": "high",
+            "score": 70,
+            "checks": [
+              {
+                "signal": "source_domain",
+                "value": "reuters.com"
+              },
+              {
+                "signal": "recognized_source",
+                "passed": true
+              },
+              {
+                "signal": "claim_provided",
+                "passed": false
+              },
+              {
+                "signal": "recommended_next_step",
+                "value": "Corroborate with lookup or primary sources."
+              }
+            ],
+            "markdown": "Credibility rating: **high** (70/100)\n\nSource: `reuters.com`\n\n- source_domain: reuters.com\n- recognized_source: True\n- claim_provided: False\n- recommended_next_step: Corroborate with lookup or primary sources."
+          }
+        }
+      ]
+    },
+    {
+      "id": "G04_credibility_claim",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "team_credibility_claim",
+        "difficulty": "medium",
+        "what_it_tests": "Claim không có URL nhưng có yêu cầu đánh giá nhanh → credibility_check với claim và quick."
+      },
+      "input": "Đánh giá nhanh claim này có đáng tin không: GPT-5 đã được dùng trong mọi bệnh viện ở Mỹ.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "credibility_check",
+            "args": {}
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "credibility_check",
+            "args": {
+              "claim": "GPT-5 đã được dùng trong mọi bệnh viện ở Mỹ.",
+              "check_depth": "standard"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "credibility_check",
+          "args": {
+            "claim": "GPT-5 đã được dùng trong mọi bệnh viện ở Mỹ.",
+            "check_depth": "standard"
+          },
+          "result": {
+            "tool": "credibility_check",
+            "url": "",
+            "claim": "GPT-5 đã được dùng trong mọi bệnh viện ở Mỹ.",
+            "check_depth": "standard",
+            "rating": "low",
+            "score": 40,
+            "checks": [
+              {
+                "signal": "missing_url",
+                "passed": false
+              },
+              {
+                "signal": "claim_provided",
+                "passed": true,
+                "value": "GPT-5 đã được dùng trong mọi bệnh viện ở Mỹ."
+              },
+              {
+                "signal": "recommended_next_step",
+                "value": "Corroborate with lookup or primary sources."
+              }
+            ],
+            "markdown": "Credibility rating: **low** (40/100)\n\n- missing_url: False\n- claim_provided: GPT-5 đã được dùng trong mọi bệnh viện ở Mỹ.\n- recommended_next_step: Corroborate with lookup or primary sources."
+          }
+        }
+      ]
+    },
+    {
+      "id": "G05_digest_builder_daily_ai",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "team_digest_builder",
+        "difficulty": "medium",
+        "what_it_tests": "Dữ liệu đã có + yêu cầu tạo digest → gọi digest_builder trực tiếp."
+      },
+      "input": "Từ các item research đã có, tạo digest AI hôm nay bằng tiếng Việt cho nguồn web và social, tối đa 6 mục.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "digest_builder",
+            "args": {
+              "topic": "AI hôm nay",
+              "sources": [
+                "web",
+                "social"
+              ],
+              "language": "vi",
+              "template": "daily_ai_vn",
+              "max_items": 6
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "digest_builder",
+            "args": {
+              "topic": "AI hôm nay",
+              "sources": [
+                "web",
+                "social"
+              ],
+              "language": "vi",
+              "template": "daily_ai_vn",
+              "max_items": 6
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "digest_builder",
+          "args": {
+            "topic": "AI hôm nay",
+            "sources": [
+              "web",
+              "social"
+            ],
+            "language": "vi",
+            "template": "daily_ai_vn",
+            "max_items": 6
+          },
+          "result": {
+            "tool": "digest_builder",
+            "topic": "AI hôm nay",
+            "sources": [
+              "web",
+              "social"
+            ],
+            "language": "vi",
+            "template": "daily_ai_vn",
+            "markdown": "## Ban tin AI hom nay: AI hôm nay\n\nLanguage: vi\nSources: web, social\n\n### Diem chinh\n- No items were provided. Use lookup, social_search, papers, or fetch first, then pass their items to this tool from web, social.",
+            "item_count": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "G06_digest_builder_executive",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "team_digest_builder_args",
+        "difficulty": "medium",
+        "what_it_tests": "Already collected items + executive brief → digest_builder với template=executive."
+      },
+      "input": "Using already collected items, build an executive research brief about robotics from papers and web sources, maximum 3 items.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "digest_builder",
+            "args": {
+              "topic": "robotics",
+              "sources": [
+                "papers",
+                "web"
+              ],
+              "language": "en",
+              "template": "executive",
+              "max_items": 3
+            }
+          },
+          {
+            "name": "lookup",
+            "args": {
+              "query": "robotics",
+              "max_results": 3
+            }
+          },
+          {
+            "name": "papers",
+            "args": {
+              "query": "robotics",
+              "max_results": 3
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "digest_builder",
+            "args": {
+              "topic": "robotics",
+              "sources": [
+                "web",
+                "papers"
+              ],
+              "language": "en",
+              "template": "executive",
+              "max_items": 3
+            }
+          },
+          {
+            "name": "lookup",
+            "args": {
+              "query": "robotics",
+              "topic": "general",
+              "max_results": 3
+            }
+          },
+          {
+            "name": "papers",
+            "args": {
+              "query": "robotics",
+              "max_results": 3
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "digest_builder",
+          "args": {
+            "topic": "robotics",
+            "sources": [
+              "web",
+              "papers"
+            ],
+            "language": "en",
+            "template": "executive",
+            "max_items": 3
+          },
+          "result": {
+            "tool": "digest_builder",
+            "topic": "robotics",
+            "sources": [
+              "web",
+              "papers"
+            ],
+            "language": "en",
+            "template": "executive",
+            "markdown": "## Executive brief: robotics\n\nLanguage: en\nSources: web, papers\n\n### Key takeaways\n- No items were provided. Use lookup, social_search, papers, or fetch first, then pass their items to this tool from web, papers.",
+            "item_count": 0
+          }
+        },
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "robotics",
+            "topic": "general",
+            "max_results": 3
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "robotics",
+            "topic": "general",
+            "timeframe": "week",
+            "items": [
+              {
+                "title": "ROBOTICS | English meaning - Cambridge Dictionary",
+                "url": "https://dictionary.cambridge.org/dictionary/english/robotics",
+                "source": "dictionary.cambridge.org",
+                "summary": "the science of making and using robots (= machines controlled by computers that are used to perform jobs automatically): The field of robotics has seen many",
+                "score": 0.9930962
+              },
+              {
+                "title": "Program: Robotics Engineering, B.S.R.E. - University of Hartford",
+                "url": "https://catalog.hartford.edu/preview_program.php?catoid=26&poid=6119&returnto=2564",
+                "source": "catalog.hartford.edu",
+                "summary": "Robotics is the discipline that combines electrical, mechanical, sensing, and programming in real time. It plays a role in nearly every aspect of our lives, and",
+                "score": 0.9764905
+              },
+              {
+                "title": "Sam Altman's OpenAI just made robotics its next frontier and it's ...",
+                "url": "https://techfundingnews.com/sam-altmans-openai-just-made-robotics-its-next-frontier-and-its-hiring-to-prove-it",
+                "source": "techfundingnews.com",
+                "summary": "#### Subscribe TFN for Daily News Alerts. ### Meta is building an AI Pendant and this time it has a working wearables business behind it. ### Sam Altman’s OpenAI just made robotics its next frontier and it’s hiring to prove it. On May 31, Altman posted on X that OpenAI Robotics is actively hiring, seeking “exceptional full-stack hardware, ops, systems, and ML engineers to help us program and manufacture robots that are useful for society.” Greg Brockman, OpenAI’s co-founder and president, followed up to confirm the division is “making rapid progress towards building AI that can help people in the physical world.”. OpenAI Robotics is hiring, looking for exceptional full-stack hardware, ops, systems, and ML engineers to help us program and manufacture robots that are useful for society. This is not OpenAI’s first attempt at robotics. It is where its most contested questions about safety, power, and autonomy will be answered in the physical world, not on a chat interface.",
+                "score": 0.9588471
+              }
+            ]
+          }
+        },
+        {
+          "tool": "papers",
+          "args": {
+            "query": "robotics",
+            "max_results": 3
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "robotics",
+            "api_query": "all:robotics",
+            "total_results": 66451,
+            "items": [
+              {
+                "arxiv_id": "2302.14334v2",
+                "title": "Design of an Adaptive Lightweight LiDAR to Decouple Robot-Camera Geometry",
+                "summary": "A fundamental challenge in robot perception is the coupling of the sensor pose and robot pose. This has led to research in active vision where robot pose is changed to reorient the sensor to areas of interest for perception. Further, egomotion such as jitter, and external effects such as wind and others affect perception requiring additional effort in software such as image stabilization. This effect is particularly pronounced in micro-air vehicles and micro-robots who typically are lighter and subject to larger jitter but do not have the computational capability to perform stabilization in real-time. We present a novel microelectromechanical (MEMS) mirror LiDAR system to change the field of view of the LiDAR independent of the robot motion. Our design has the potential for use on small, low-power systems where the expensive components of the LiDAR can be placed external to the small robot. We show the utility of our approach in simulation and on prototype hardware mounted on a UAV. We believe that this LiDAR and its compact movable scanning design provide mechanisms to decouple robot and sensor geometry allowing us to simplify robot perception. We also demonstrate examples of motion compensation using IMU and external odometry feedback in hardware.",
+                "authors": [
+                  "Yuyang Chen",
+                  "Dingkang Wang",
+                  "Lenworth Thomas",
+                  "Karthik Dantu",
+                  "Sanjeev J. Koppal"
+                ],
+                "published": "2023-02-28T06:03:42Z",
+                "updated": "2024-03-01T01:48:16Z",
+                "url": "http://arxiv.org/abs/2302.14334v2",
+                "pdf_url": "https://arxiv.org/pdf/2302.14334v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.RO",
+                "categories": [
+                  "cs.RO"
+                ]
+              },
+              {
+                "arxiv_id": "1904.09266v3",
+                "title": "Secure and secret cooperation in robotic swarms",
+                "summary": "The importance of swarm robotics systems in both academic research and real-world applications is steadily increasing. However, to reach widespread adoption, new models that ensure the secure cooperation of large groups of robots need to be developed. This work introduces a novel method to encapsulate cooperative robotic missions in an authenticated data structure known as Merkle tree. With this method, operators can provide the \"blueprint\" of the swarm's mission without disclosing its raw data. In other words, data verification can be separated from data itself. We propose a system where robots in a swarm, to cooperate towards mission completion, have to \"prove\" their integrity to their peers by exchanging cryptographic proofs. We show the implications of this approach for two different swarm robotics missions: foraging and maze formation. In both missions, swarm robots were able to cooperate and carry out sequential operations without having explicit knowledge about the mission's high-level objectives. The results presented in this work demonstrate the feasibility of using Merkle trees as a cooperation mechanism for swarm robotics systems in both simulation and real-robot experiments, which has implications for future decentralized robotics applications where security plays a crucial role such as environmental monitoring, infrastructure surveillance, and disaster management.",
+                "authors": [
+                  "Eduardo Castelló Ferrer",
+                  "Thomas Hardjono",
+                  "Alex 'Sandy' Pentland",
+                  "Marco Dorigo"
+                ],
+                "published": "2019-04-19T17:00:13Z",
+                "updated": "2021-04-01T21:45:13Z",
+                "url": "http://arxiv.org/abs/1904.09266v3",
+                "pdf_url": "https://arxiv.org/pdf/1904.09266v3",
+                "source": "arxiv.org",
+                "primary_category": "cs.RO",
+                "categories": [
+                  "cs.RO",
+                  "cs.CR",
+                  "cs.DS",
+                  "cs.ET",
+                  "cs.MA"
+                ]
+              },
+              {
+                "arxiv_id": "2502.04012v1",
+                "title": "Malleable Robots",
+                "summary": "This chapter is about the fundamentals of fabrication, control, and human-robot interaction of a new type of collaborative robotic manipulators, called malleable robots, which are based on adjustable architectures of varying stiffness for achieving high dexterity with lower mobility arms. Collaborative robots, or cobots, commonly integrate six or more degrees of freedom (DOF) in a serial arm in order to allow positioning in constrained spaces and adaptability across tasks. Increasing the dexterity of robotic arms has been indeed traditionally accomplished by increasing the number of degrees of freedom of the system; however, once a robotic task has been established (e.g., a pick-and-place operation), the motion of the end-effector can be normally achieved using less than 6-DOF (i.e., lower mobility). The aim of malleable robots is to close the technological gap that separates current cobots from achieving flexible, accessible manufacturing automation with a reduced number of actuators.",
+                "authors": [
+                  "Angus B. Clark",
+                  "Xinran Wang",
+                  "Alex Ranne",
+                  "Nicolas Rojas"
+                ],
+                "published": "2025-02-06T12:14:17Z",
+                "updated": "2025-02-06T12:14:17Z",
+                "url": "http://arxiv.org/abs/2502.04012v1",
+                "pdf_url": "https://arxiv.org/pdf/2502.04012v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.RO",
+                "categories": [
+                  "cs.RO"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        }
+      ]
+    },
+    {
+      "id": "G07_multi_missing_url_then_summarize",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "team_multiturn_summarize_url",
+        "difficulty": "hard",
+        "what_it_tests": "Carry yêu cầu bullets=5 từ lượt đầu, dùng URL được bổ sung ở lượt cuối."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tóm tắt URL này thành 5 gạch đầu dòng giúp mình"
+        },
+        {
+          "role": "user",
+          "content": "Mình quên gửi link"
+        },
+        {
+          "role": "user",
+          "content": "Đây nhé: https://openai.com/blog"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "summarize_url",
+            "args": {
+              "url": "https://openai.com/blog",
+              "summary_style": "bullets",
+              "max_points": 5
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "summarize_url",
+            "args": {
+              "url": "https://openai.com/blog",
+              "summary_style": "bullets",
+              "language": "vi",
+              "max_points": 5
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "summarize_url",
+          "args": {
+            "url": "https://openai.com/blog",
+            "summary_style": "bullets",
+            "language": "vi",
+            "max_points": 5
+          },
+          "result": {
+            "tool": "summarize_url",
+            "url": "https://openai.com/blog",
+            "source": "openai.com",
+            "language": "vi",
+            "summary_style": "bullets",
+            "markdown": "- OpenAI News | OpenAI Skip to main content Research Products Business Developers Company Foundation (opens in a new window) Log in Try ChatGPT (opens in a new window) Research Products Business Developers Company Foundation (opens in a new window) Try ChatGPT (opens in a new window) Login OpenAI All Company Research Product Safety Engineering Security Global Affairs AI Adoption All Filter Sort Switch cards to show Media Switch cards to hide Media OpenAI frontier models and Codex are now available on AWS Product Jun 1, 2026 Strengthening societal resilience with Rosalind Biodefense Product May 29, 2026 A shared playbook for trustworthy third party evaluations Safety May 29, 2026 OpenAI’s Frontier Governance Framework Safety May 28, 2026 Building self-improving tax agents with Codex Engineering May 27, 2026 OpenAI named a Leader in enterprise coding agents by Gartner AI Adoption May 22, 2026 An OpenAI model has disproved a central conjecture in discrete geometry Research May 20, 2026 Advancing content provenance for a safer, more transparent AI ecosystem Safety May 19, 2026 OpenAI and Dell Technologies partner to bring Codex to hybrid and on-premises enterprise environments Company May 18, 2026 Load more Our Research Research Index Research Overview Research Residency Economic Research Latest Advancements GPT-5.5 GPT-5.4 GPT-5.3 Instant GPT-5.3-Codex Safety Safety Approach Security & Privacy Trust & Transparency ChatGPT Explore ChatGPT (opens in a new window) Business Enterprise Education Pricing (opens in a new window) Download (opens in a new window) API Platform Platform Overview Pricing API log in (opens in a new window) Documentation (opens in a new window) Developer Forum (opens in a new window) For Business Business Overview Solutions Contact Sales Company About Us Our Charter Foundation (opens in a new window) Careers Brand Support Help Center (opens in a new window) More News Stories Academy Livestreams Podcast RSS Terms & Policies Terms of Use Privacy Policy Other Policies (opens in a new window) (opens in a new window) (opens in a new window) (opens in a new window) (opens in a new window) (opens in a new window) (opens in a new window) OpenAI © 2015–2026 Manage Cookies English United States",
+            "items": [
+              {
+                "title": "OpenAI News | OpenAI",
+                "url": "https://openai.com/blog",
+                "source": "openai.com",
+                "summary": "OpenAI News | OpenAI Skip to main content Research Products Business Developers Company Foundation (opens in a new window) Log in Try ChatGPT (opens in a new window) Research Products Business Developers Company Foundation (opens in a new window) Try ChatGPT (opens in a new window) Login OpenAI All Company Research Product Safety Engineering Security Global Affairs AI Adoption All Filter Sort Switch cards to show Media Switch cards to hide Media OpenAI frontier models and Codex are now available on AWS Product Jun 1, 2026 Strengthening societal resilience with Rosalind Biodefense Product May 29, 2026 A shared playbook for trustworthy third party evaluations Safety May 29, 2026 OpenAI’s Frontier Governance Framework Safety May 28, 2026 Building self-improving tax agents with Codex Engineering May 27, 2026 OpenAI named a Leader in enterprise coding agents by Gartner AI Adoption May 22, 2026 An OpenAI model has disproved a central conjecture in discrete geometry Research May 20, 2026 Advancing content provenance for a safer, more transparent AI ecosystem Safety May 19, 2026 OpenAI and Dell Technologies partner to bring Codex to hybrid and on-premises enterprise environments Company May 18, 2026 Load more Our Research Research Index Research Overview Research Residency Economic Research Latest Advancements GPT-5.5 GPT-5.4 GPT-5.3 Instant GPT-5.3-Codex Safety Safety Approach Security & Privacy Trust & Transparency ChatGPT Explore ChatGPT (opens in a new window) Business Enterprise Education Pricing (opens in a new window) Download (opens in a new window) API Platform Platform Overview Pricing API log in (opens in a new window) Documentation (opens in a new window) Developer Forum (opens in a new window) For Business Business Overview Solutions Contact Sales Company About Us Our Charter Foundation (opens in a new window) Careers Brand Support Help Center (opens in a new window) More News Stories Academy Livestreams Podcast RSS Terms & Policies Terms of Use Privacy Policy Other Policies (opens in a new window) (opens in a new window) (opens in a new window) (opens in a new window) (opens in a new window) (opens in a new window) (opens in a new window) OpenAI © 2015–2026 Manage Cookies English United States",
+                "section": "URL Summary"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G08_multi_change_summary_style",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "team_multiturn_summary_correction",
+        "difficulty": "hard",
+        "what_it_tests": "Latest turn/correction changes summary_style from brief to detailed and preserves URL."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Summarize https://www.anthropic.com/research briefly"
+        },
+        {
+          "role": "user",
+          "content": "Actually make it detailed"
+        },
+        {
+          "role": "user",
+          "content": "Keep the output in English"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "summarize_url",
+            "args": {
+              "url": "https://www.anthropic.com/research",
+              "summary_style": "detailed",
+              "language": "en"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "summarize_url",
+            "args": {
+              "url": "https://www.anthropic.com/research",
+              "summary_style": "detailed",
+              "language": "en"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "summarize_url",
+          "args": {
+            "url": "https://www.anthropic.com/research",
+            "summary_style": "detailed",
+            "language": "en"
+          },
+          "result": {
+            "tool": "summarize_url",
+            "url": "https://www.anthropic.com/research",
+            "source": "anthropic.com",
+            "language": "en",
+            "summary_style": "detailed",
+            "markdown": "## Research \\ Anthropic\n\n- Skip to main content Skip to footer Research Economic Futures Commitments Learn News Try Claude Research Our research teams investigate the safety, inner workings, and societal impacts of AI models – so that artificial intelligence has a positive impact as it becomes increasingly capable.\n- Research teams: Alignment Economic Research Interpretability Societal Impacts Interpretability The mission of the Interpretability team is to discover and understand how large language models work internally, as a foundation for AI safety and positive outcomes.\n- Alignment The Alignment team works to understand the risks of AI models and develop ways to ensure that future ones remain helpful, honest, and harmless.\n- Societal Impacts Working closely with the Anthropic Policy and Safeguards teams, Societal Impacts is a technical research team that explores how AI is used in the real world.\n- Frontier Red Team The Frontier Red Team analyzes the implications of frontier AI models for cybersecurity, biosecurity, and autonomous systems.",
+            "items": [
+              {
+                "title": "Research \\ Anthropic",
+                "url": "https://www.anthropic.com/research",
+                "source": "anthropic.com",
+                "summary": "Skip to main content Skip to footer Research Economic Futures Commitments Learn News Try Claude Research Our research teams investigate the safety, inner workings, and societal impacts of AI models – so that artificial intelligence has a positive impact as it becomes increasingly capable. Research teams: Alignment Economic Research Interpretability Societal Impacts Interpretability The mission of the Interpretability team is to discover and understand how large language models work internally, as a foundation for AI safety and positive outcomes. Alignment The Alignment team works to understand the risks of AI models and develop ways to ensure that future ones remain helpful, honest, and harmless. Societal Impacts Working closely with the Anthropic Policy and Safeguards teams, Societal Impacts is a technical research team that explores how AI is used in the real world. Frontier Red Team The Frontier Red Team analyzes the implications of frontier AI models for cybersecurity, biosecurity, and autonomous systems.",
+                "section": "URL Summary"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G09_multi_credibility_url_then_claim",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "team_multiturn_credibility",
+        "difficulty": "hard",
+        "what_it_tests": "Carry URL từ lượt 1, claim từ lượt 2, depth từ lượt 3."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Kiểm tra nguồn này đáng tin không: https://www.bbc.com/news/technology"
+        },
+        {
+          "role": "user",
+          "content": "Claim cần kiểm tra là: AI đã thay thế toàn bộ lập trình viên junior"
+        },
+        {
+          "role": "user",
+          "content": "Làm mức standard nhé"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "credibility_check",
+            "args": {
+              "url": "https://www.bbc.com/news/technology",
+              "claim": "AI đã thay thế toàn bộ lập trình viên junior",
+              "check_depth": "standard"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "credibility_check",
+            "args": {
+              "url": "https://www.bbc.com/news/technology",
+              "claim": "AI đã thay thế toàn bộ lập trình viên junior",
+              "check_depth": "standard"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "credibility_check",
+          "args": {
+            "url": "https://www.bbc.com/news/technology",
+            "claim": "AI đã thay thế toàn bộ lập trình viên junior",
+            "check_depth": "standard"
+          },
+          "result": {
+            "tool": "credibility_check",
+            "url": "https://www.bbc.com/news/technology",
+            "claim": "AI đã thay thế toàn bộ lập trình viên junior",
+            "check_depth": "standard",
+            "rating": "high",
+            "score": 75,
+            "checks": [
+              {
+                "signal": "source_domain",
+                "value": "bbc.com"
+              },
+              {
+                "signal": "recognized_source",
+                "passed": true
+              },
+              {
+                "signal": "claim_provided",
+                "passed": true,
+                "value": "AI đã thay thế toàn bộ lập trình viên junior"
+              },
+              {
+                "signal": "recommended_next_step",
+                "value": "Corroborate with lookup or primary sources."
+              }
+            ],
+            "markdown": "Credibility rating: **high** (75/100)\n\nSource: `bbc.com`\n\n- source_domain: bbc.com\n- recognized_source: True\n- claim_provided: AI đã thay thế toàn bộ lập trình viên junior\n- recommended_next_step: Corroborate with lookup or primary sources."
+          }
+        }
+      ]
+    },
+    {
+      "id": "G10_multi_digest_sources_update",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "team_multiturn_digest_update",
+        "difficulty": "hard",
+        "what_it_tests": "Multi-turn cập nhật sources và template cho digest_builder."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tạo research digest về climate tech từ các item đã có, nguồn web"
+        },
+        {
+          "role": "user",
+          "content": "Thêm cả source papers nữa"
+        },
+        {
+          "role": "user",
+          "content": "Dùng dạng executive, tối đa 4 items"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "digest_builder",
+            "args": {
+              "topic": "climate tech",
+              "sources": [
+                "web",
+                "papers"
+              ],
+              "template": "executive",
+              "max_items": 4
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "digest_builder",
+            "args": {
+              "topic": "climate tech",
+              "sources": [
+                "web",
+                "papers"
+              ],
+              "language": "vi",
+              "template": "executive",
+              "max_items": 4
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "digest_builder",
+          "args": {
+            "topic": "climate tech",
+            "sources": [
+              "web",
+              "papers"
+            ],
+            "language": "vi",
+            "template": "executive",
+            "max_items": 4
+          },
+          "result": {
+            "tool": "digest_builder",
+            "topic": "climate tech",
+            "sources": [
+              "web",
+              "papers"
+            ],
+            "language": "vi",
+            "template": "executive",
+            "markdown": "## Executive brief: climate tech\n\nLanguage: vi\nSources: web, papers\n\n### Key takeaways\n- No items were provided. Use lookup, social_search, papers, or fetch first, then pass their items to this tool from web, papers.",
+            "item_count": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "G11_multi_switch_from_lookup_to_digest",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "team_multiturn_lookup_then_digest",
+        "difficulty": "hard",
+        "what_it_tests": "Request cần collection tool trước rồi digest_builder, không chỉ gọi một tool."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm tin AI hôm nay trên web"
+        },
+        {
+          "role": "user",
+          "content": "Sau đó gom thành bản tin AI tiếng Việt"
+        },
+        {
+          "role": "user",
+          "content": "Dùng template daily_ai_vn"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "AI",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          },
+          {
+            "name": "digest_builder",
+            "args": {
+              "sources": [
+                "web"
+              ],
+              "language": "vi",
+              "template": "daily_ai_vn"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "AI",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          },
+          {
+            "name": "digest_builder",
+            "args": {
+              "topic": "Tin tức AI hôm nay",
+              "sources": [
+                "web"
+              ],
+              "language": "vi",
+              "template": "daily_ai_vn",
+              "max_items": 5
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "AI",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "AI",
+            "topic": "news",
+            "timeframe": "day",
+            "items": [
+              {
+                "title": "AI expected to drive £18bn of UK digital ad spend by 2030 - Marketing Week",
+                "url": "https://www.marketingweek.com/iab-uk-ai-ad-spend/",
+                "source": "marketingweek.com",
+                "summary": "# AI expected to drive £18bn of UK digital ad spend by 2030. IAB UK forecasts AI will drive one-third of UK digital ad spend by 2030 as advertisers adapt to changes in search, content and media buying. One-third (32%) of UK digital ad spend, equivalent to around £18bn, will be AI-driven by 2030, according to new forecasts from IAB UK. According to ‘The State of AI in Advertising: Charting the Shift from Automation to Autonomy, ‘ AI is expected to influence ad spend across four key areas– content creation, zero-click search, agentic trading and agentic commerce. To estimate the likely scale of change, IAB UK developed a series of ‘AI overlays’ that estimate the proportion of media spend by channel that is ‘AI-driven’, defined as a media buying and delivery decision made by an AI-powered algorithm. IAB UK forecasts most of the growth will come from the adoption of AI buying tools in search, such as Google’s AI Max and PMax; social, including Meta’s Advantage+; and display advertising through agentic programmatic buying.",
+                "score": 0.3331999
+              },
+              {
+                "title": "40% of executives thought AI could save up to 20%. It didn’t deliver. - PitchBook",
+                "url": "https://pitchbook.com/news/articles/40-of-executives-thought-ai-could-save-up-to-20-it-didnt-deliver",
+                "source": "pitchbook.com",
+                "summary": "## The gap between AI spending and productivity gains “should be making executives uncomfortable,” a Bain report found. Corporates are beefing up their AI budgets but seeing lackluster productivity gains, according to the latest Bain & Company report. Bain’s Automation and AI Pathfinder Survey 2026, which had 951 respondents, found that 40% of the companies that tracked their spending recorded cost savings of less than 10% from their AI initiatives. Still, 90% of those surveyed whose AI investments underdelivered plan to increase their AI budgets next year. As compute and usage costs have risen dramatically, executives and shareholders are taking a closer look at the returns that those investments have brought so far. A PitchBook analysis of 186 AI-related questions on B2C earnings calls found that 90% were probing and investigative in tone, and that ROI and financial returns have overtaken product roadmaps as the dominant focus. Employees’ use of AI tools can range from coding assistants to AI-generated research to organizing unstructured databases.",
+                "score": 0.26990628
+              },
+              {
+                "title": "AI & Tech Brief: Exclusive | AI ad campaigns slam Trahan - The Washington Post",
+                "url": "https://www.washingtonpost.com/wp-intelligence/ai-tech-brief/2026/06/01/ai-tech-brief-exclusive-ai-ad-campaigns-slam-trahan/",
+                "source": "washingtonpost.com",
+                "summary": "AI & Tech Brief from WP Intelligence. # AI & Tech Brief: Exclusive | AI ad campaigns slam Trahan. Plus, Anthropic files for a blockbuster initial public offering. Make us preferred on Google. Sign up here to get this newsletter in your inbox. * **Exclusive:** AI safety group Americans for Responsible Innovation rolls out a six-figure ad campaign this week attacking Rep. Lori Trahan (D-Massachusetts), arguing that she’s “taking the side” of AI oligarchs in her bipartisan legislative efforts. * The AI safety community doesn’t want to hand power of AI regulation to President Donald Trump’s administration now that states are passing more rigorous AI laws — and the California and New York attorneys general are challenging big AI companies. * Nvidia is rolling out a new “world model” simulator for robots and a new design platform for robot developers. In doing so, the company is running the same business playbook it did to become so dominant in the chip market.",
+                "score": 0.23527569
+              },
+              {
+                "title": "AI Savings Misses ‘Should Be Making Executives Uncomfortable,’ Bain Says - Insurance Journal",
+                "url": "https://www.insurancejournal.com/news/national/2026/06/01/871951.htm",
+                "source": "insurancejournal.com",
+                "summary": "The missed targets “should be making executives uncomfortable,” especially since many of them are approving increased spending for artificial intelligence on the basis of expected savings, the consulting firm said in a report shared exclusively with Bloomberg News. While some companies are funding fresh investment in generative and agentic AI with realized savings, the largest share (44%) cited targeted savings among their top sources of funding for the next wave of outlays, according to the report. “Despite a decade of investments in data modernization running well into hundreds of billions of dollars globally, the No. 1 reason AI programs underperform is that companies cannot reliably get access to their own data,” Bain said. Its prescription: Instead of waiting to structure all of their data to make it ingestible by AI, companies should start with what’s available to feed into the models — and then use AI to help sort out how to structure the rest.",
+                "score": 0.22715242
+              },
+              {
+                "title": "New Report: The AI Rebuild of Travel - Skift",
+                "url": "https://skift.com/insights/the-ai-rebuild-of-travel/",
+                "source": "skift.com",
+                "summary": "# New Report: The AI Rebuild of Travel. Travel technology is being rebuilt in real time as AI begins to shape how trips are discovered, booked, and managed. And systems built for websites and manual workflows are struggling to keep pace with a more connected, autonomous future. What once operated as a predictable digital journey is becoming an AI-mediated ecosystem powered by real-time data, interoperability, and increasingly intelligent systems. Skift Studio spoke with 10 senior technology, product, and digital leaders across airlines, hospitality companies, travel platforms, and technology providers to understand how the industry is preparing. One thing is clear: the next era of travel will be defined by infrastructure as much as interface. **Download the report to learn:**. * How AI assistants and agentic experiences are reshaping travel discovery and booking. * Why trust, governance, and identity are becoming central to AI-powered travel. * How airlines, hotels, and platforms are preparing for a more autonomous future.",
+                "score": 0.20429464
+              }
+            ]
+          }
+        },
+        {
+          "tool": "digest_builder",
+          "args": {
+            "topic": "Tin tức AI hôm nay",
+            "sources": [
+              "web"
+            ],
+            "language": "vi",
+            "template": "daily_ai_vn",
+            "max_items": 5
+          },
+          "result": {
+            "tool": "digest_builder",
+            "topic": "Tin tức AI hôm nay",
+            "sources": [
+              "web"
+            ],
+            "language": "vi",
+            "template": "daily_ai_vn",
+            "markdown": "## Ban tin AI hom nay: Tin tức AI hôm nay\n\nLanguage: vi\nSources: web\n\n### Diem chinh\n- No items were provided. Use lookup, social_search, papers, or fetch first, then pass their items to this tool from web.",
+            "item_count": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "G12_multi_missing_source_for_credibility",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "team_multiturn_credibility_missing_source",
+        "difficulty": "medium",
+        "what_it_tests": "Thiếu URL ban đầu, sau đó dùng URL được bổ sung và depth=quick."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Kiểm tra xem nguồn này có đáng tin không"
+        },
+        {
+          "role": "user",
+          "content": "Nguồn đây: https://example.com/ai-rumor"
+        },
+        {
+          "role": "user",
+          "content": "Chỉ cần quick check"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "credibility_check",
+            "args": {
+              "url": "https://example.com/ai-rumor",
+              "check_depth": "quick"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "credibility_check",
+            "args": {
+              "url": "https://example.com/ai-rumor",
+              "check_depth": "quick"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "credibility_check",
+          "args": {
+            "url": "https://example.com/ai-rumor",
+            "check_depth": "quick"
+          },
+          "result": {
+            "tool": "credibility_check",
+            "url": "https://example.com/ai-rumor",
+            "claim": "",
+            "check_depth": "quick",
+            "rating": "medium",
+            "score": 45,
+            "checks": [
+              {
+                "signal": "source_domain",
+                "value": "example.com"
+              },
+              {
+                "signal": "recognized_source",
+                "passed": false
+              },
+              {
+                "signal": "claim_provided",
+                "passed": false
+              }
+            ],
+            "markdown": "Credibility rating: **medium** (45/100)\n\nSource: `example.com`\n\n- source_domain: example.com\n- recognized_source: False\n- claim_provided: False"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -17,6 +17,9 @@ from .policy.tool import search_company_policy
 from .social_search.tool import search_tweets
 from .send.tool import send_telegram
 from .lookup.tool import web_search
+from .summarize_url.tool import summarize_url
+from .credibility_check.tool import credibility_check
+from .digest_builder.tool import digest_builder
 
 
 # NOTE (starter_v0): tool names here are intentionally vague. These keys are the
@@ -35,6 +38,9 @@ TOOL_FUNCTIONS = {
     "policy": search_company_policy,
     "papers": arxiv_search,
     "paper_text": get_arxiv_paper_text,
+    "summarize_url": summarize_url,
+    "credibility_check": credibility_check,
+    "digest_builder": digest_builder,
 }
 
 
