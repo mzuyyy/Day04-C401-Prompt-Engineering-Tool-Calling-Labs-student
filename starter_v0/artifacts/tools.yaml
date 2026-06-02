@@ -116,3 +116,40 @@ tools:
         max_pages: {type: integer, default: 5, description: "Số trang"}
         max_chars: {type: integer, default: 8000, description: "Số ký tự"}
       required: [arxiv_url]
+
+tools:
+  - name: read_policy
+    description: "Reads internal markdown policy documents to answer organizational questions."
+    parameters:
+      type: object
+      properties:
+        doc_name:
+          type: string
+          description: "The name of the policy file (e.g., 'privacy.md', 'security.md')."
+      required: [doc_name]
+
+  - name: search_arxiv_papers
+    description: "Searches arXiv for scientific research papers by keywords."
+    parameters:
+      type: object
+      properties:
+        query:
+          type: string
+          description: "Keywords or topic to search for (e.g., 'Prompt Engineering')."
+        max_results:
+          type: integer
+          description: "Number of papers to return. Default is 3."
+      required: [query]
+
+  - name: send_notification
+    description: "CRITICAL: Sends an alert or summary email to a user. Requires prior confirmation."
+    parameters:
+      type: object
+      properties:
+        recipient:
+          type: string
+          description: "Email address or username of the receiver."
+        message:
+          type: string
+          description: "The body text of the notification."
+      required: [recipient, message]
