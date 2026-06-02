@@ -16,5 +16,13 @@
       "AI-news"
     ],
     "saved_at": "2026-06-02T14:06:39"
+  },
+  {
+    "id": 3,
+    "title": "Test",
+    "url": "https://test.com",
+    "note": "",
+    "tags": [],
+    "saved_at": "2026-06-02T15:08:41"
   }
 ]
