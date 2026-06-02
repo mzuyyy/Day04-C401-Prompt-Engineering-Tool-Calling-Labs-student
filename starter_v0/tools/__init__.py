@@ -5,6 +5,11 @@ from typing import Any
 
 import yaml
 
+from env_loader import load_lab_env
+
+ROOT = Path(__file__).resolve().parents[1]
+load_lab_env(ROOT)
+
 # Folder names are intentionally vague to match the tool names students see.
 # The imported function names are the underlying implementations (unchanged).
 from .clarify.tool import ask_user
@@ -17,6 +22,10 @@ from .policy.tool import search_company_policy
 from .social_search.tool import search_tweets
 from .send.tool import send_telegram
 from .lookup.tool import web_search
+from .bookmark.tool import save_bookmark
+from .summarize.tool import summarize_text
+from .export.tool import export_digest
+from .compare.tool import compare_sources
 
 
 # NOTE (starter_v0): tool names here are intentionally vague. These keys are the
@@ -35,6 +44,10 @@ TOOL_FUNCTIONS = {
     "policy": search_company_policy,
     "papers": arxiv_search,
     "paper_text": get_arxiv_paper_text,
+    "bookmark": save_bookmark,
+    "summarize": summarize_text,
+    "export": export_digest,
+    "compare": compare_sources,
 }
 
 
@@ -51,4 +64,3 @@ def to_openai_tools(declarations: list[dict[str, Any]]) -> list[dict[str, Any]]:
             "parameters": item.get("parameters", {"type": "object", "properties": {}}),
         },
     } for item in declarations]
-

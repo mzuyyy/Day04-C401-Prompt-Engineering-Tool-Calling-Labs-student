@@ -1,7 +1,110 @@
 {
   "dataset_id": "day04_v2_research_group",
   "dataset_role": "group",
-  "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
+  "description": "Cases do nhóm tự viết: cover thêm bookmark tool, parallel fetch, policy routing, edge cases cho clarify và out-of-scope.",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "cases": [
+    {
+      "id": "G01_bookmark_add",
+      "phase": "B", "suite": "group",
+      "query": "Lưu bài viết về GPT-5 tại https://openai.com/gpt-5 vào bookmark giúp mình",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "bookmark", "args": {"action": "add", "url": "https://openai.com/gpt-5"}}]},
+      "metadata": {"skill": "bookmark_add", "difficulty": "easy", "what_it_tests": "User muốn lưu item → gọi bookmark tool với action=add."}
+    },
+    {
+      "id": "G02_bookmark_list",
+      "phase": "B", "suite": "group",
+      "query": "Cho mình xem danh sách bookmark đã lưu",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "bookmark", "args": {"action": "list"}}]},
+      "metadata": {"skill": "bookmark_list", "difficulty": "easy", "what_it_tests": "User muốn xem bookmarks → gọi bookmark với action=list."}
+    },
+    {
+      "id": "G03_out_of_scope_translate",
+      "phase": "B", "suite": "group",
+      "query": "Dịch đoạn văn này sang tiếng Anh: 'Xin chào thế giới'",
+      "failure_type": "out_of_scope",
+      "expect": {"no_tool": true, "behavior": "refuse"},
+      "metadata": {"skill": "out_of_scope_translate", "difficulty": "easy", "what_it_tests": "Yêu cầu dịch thuật ngoài phạm vi research → không gọi tool."}
+    },
+    {
+      "id": "G04_policy_tool_usage",
+      "phase": "B", "suite": "group",
+      "query": "Theo policy công ty, khi trích dẫn nguồn tin từ Twitter thì cần tuân thủ quy tắc gì?",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "policy", "args": {"policy_area": "source_citation"}}]},
+      "metadata": {"skill": "policy_source_citation", "difficulty": "medium", "what_it_tests": "Câu hỏi rõ về policy trích dẫn nguồn → policy tool với source_citation."}
+    },
+    {
+      "id": "G05_missing_query_for_search",
+      "phase": "B", "suite": "group",
+      "query": "Tìm tweet mới nhất giúp mình",
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "text"}}]},
+      "metadata": {"skill": "clarify_missing_topic_and_handle", "difficulty": "medium", "what_it_tests": "Không rõ tìm tweet CỦA AI hay VỀ CHỦ ĐỀ GÌ → cần clarify."}
+    },
+    {
+      "id": "G06_multi_clarify_then_search",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tìm tweet giúp mình"},
+        {"role": "user", "content": "Về chủ đề Claude AI nhé"},
+        {"role": "user", "content": "Lấy tweet phổ biến nhất, khoảng 3 cái"}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "social_search", "args": {"query": "Claude AI", "search_type": "Top", "limit": 3}}]},
+      "metadata": {"skill": "multiturn_social_search_args", "difficulty": "hard", "what_it_tests": "3 turns: carry topic Claude AI, map 'phổ biến' → Top, limit=3."}
+    },
+    {
+      "id": "G07_multi_bookmark_after_fetch",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Đọc bài này: https://arstechnica.com/ai-2025"},
+        {"role": "user", "content": "Hay quá, lưu bài đó vào bookmark với tag AI-news nhé"}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "bookmark", "args": {"action": "add", "url": "https://arstechnica.com/ai-2025"}}]},
+      "metadata": {"skill": "multiturn_bookmark_with_tags", "difficulty": "hard", "what_it_tests": "2 turns: carry URL từ turn 1, lưu bookmark ở turn 2."}
+    },
+    {
+      "id": "G08_multi_switch_topic",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tin AI hôm nay có gì?"},
+        {"role": "user", "content": "Thôi bỏ tin tức, tìm paper arXiv về LLM đi"},
+        {"role": "user", "content": "Tìm khoảng 3 paper mới nhất"}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "papers", "args": {"query": "LLM", "max_results": 3}}]},
+      "metadata": {"skill": "multiturn_switch_from_news_to_arxiv", "difficulty": "hard", "what_it_tests": "3 turns: bỏ lookup news, chuyển sang papers arXiv, carry max_results=3."}
+    },
+    {
+      "id": "G09_multi_fetch_two_urls",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Đọc giúp mình 2 bài này"},
+        {"role": "user", "content": "https://openai.com/research và https://deepmind.google/discover/blog/"},
+        {"role": "user", "content": "Đọc cả 2 link luôn nhé"}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [
+        {"name": "fetch", "args": {"url": "https://openai.com/research"}},
+        {"name": "fetch", "args": {"url": "https://deepmind.google/discover/blog/"}}
+      ]},
+      "metadata": {"skill": "multiturn_parallel_fetch", "difficulty": "hard", "what_it_tests": "3 turns: user cung cấp 2 URLs ở turn 2, xác nhận đọc cả 2 ở turn 3 → fetch cả 2."}
+    },
+    {
+      "id": "G10_multi_confirm_send_then_cancel",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Gửi bản tin AI lên Telegram giúp mình"},
+        {"role": "user", "content": "Nội dung là: AI đang phát triển rất nhanh"},
+        {"role": "user", "content": "Thôi khoan, đừng gửi nữa"}
+      ],
+      "failure_type": "wrong_boundary",
+      "expect": {"no_tool": true, "behavior": "acknowledge_cancel"},
+      "metadata": {"skill": "multiturn_cancel_action", "difficulty": "hard", "what_it_tests": "3 turns: user yêu cầu gửi rồi hủy → KHÔNG gọi send, xác nhận đã hủy."}
+    }
+  ]
 }
