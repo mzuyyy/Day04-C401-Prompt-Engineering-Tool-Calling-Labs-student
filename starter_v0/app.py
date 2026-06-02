@@ -96,6 +96,80 @@ def run_model_tool_loop(
     }
 
 
+TOOL_INFO = {
+    "clarify": {
+        "icon": "❓",
+        "vi_name": "Hỏi lại",
+        "example": "User: 'Tìm tweet giúp mình'\nAgent: 'Bạn muốn tìm tweet của ai?'"
+    },
+    "timeline": {
+        "icon": "📱",
+        "vi_name": "Tweet theo người",
+        "example": "User: 'Tweet mới nhất của Elon Musk'\nAgent: Tìm và trả về 5 tweet gần nhất"
+    },
+    "social_search": {
+        "icon": "🔍",
+        "vi_name": "Tìm tweet theo chủ đề",
+        "example": "User: 'Mọi người nói gì về AI?'\nAgent: Tìm 5 tweet mới nhất về AI"
+    },
+    "lookup": {
+        "icon": "🌐",
+        "vi_name": "Tìm web",
+        "example": "User: 'Tin AI hôm nay'\nAgent: Tìm 5 tin tức AI mới nhất trong ngày"
+    },
+    "fetch": {
+        "icon": "📄",
+        "vi_name": "Đọc URL",
+        "example": "User: 'Đọc bài này: https://openai.com/research'\nAgent: Trả về nội dung bài viết"
+    },
+    "format": {
+        "icon": "📋",
+        "vi_name": "Định dạng",
+        "example": "User: 'Tạo bản tin từ các tin vừa tìm'\nAgent: Trả về bản tin markdown"
+    },
+    "send": {
+        "icon": "📤",
+        "vi_name": "Gửi Telegram",
+        "example": "User: 'Gửi bản tin lên Telegram'\nAgent: 'Bạn có chắc muốn gửi?' → Gửi khi xác nhận"
+    },
+    "policy": {
+        "icon": "📜",
+        "vi_name": "Policy công ty",
+        "example": "User: 'Quy tắc trích dẫn nguồn?'\nAgent: Trả về quy định từ policy nội bộ"
+    },
+    "papers": {
+        "icon": "📚",
+        "vi_name": "Tìm paper arXiv",
+        "example": "User: 'Paper về LLM'\nAgent: Tìm 5 paper liên quan trên arXiv"
+    },
+    "paper_text": {
+        "icon": "📖",
+        "vi_name": "Đọc paper PDF",
+        "example": "User: 'Đọc paper 1706.03762'\nAgent: Trả về nội dung paper"
+    },
+    "bookmark": {
+        "icon": "🔖",
+        "vi_name": "Đánh dấu",
+        "example": "User: 'Lưu bài này vào bookmark'\nAgent: Đã lưu bookmark thành công"
+    },
+    "summarize": {
+        "icon": "✂️",
+        "vi_name": "Tóm tắt",
+        "example": "User: 'Tóm tắt bài báo này'\nAgent: Trả về bản tóm tắt"
+    },
+    "export": {
+        "icon": "💾",
+        "vi_name": "Xuất file",
+        "example": "User: 'Xuất ra file markdown'\nAgent: Tạo file và trả về đường dẫn"
+    },
+    "compare": {
+        "icon": "⚖️",
+        "vi_name": "So sánh",
+        "example": "User: 'So sánh 2 bài báo này'\nAgent: Trả về điểm tương đồng"
+    },
+}
+
+
 def init_session_state():
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -127,13 +201,13 @@ def main() -> None:
     init_session_state()
 
     st.title("🔬 Research Agent")
-    st.caption("AI Research Assistant with Tool Calling - Day04 Lab")
+    st.caption("Trợ lý nghiên cứu AI với Tool Calling - Day04 Lab")
 
     with st.sidebar:
-        st.header("⚙️ Settings")
+        st.header("⚙️ Cài đặt")
 
         provider_name = st.selectbox(
-            "Provider",
+            "Nhà cung cấp",
             ["openrouter", "openai", "anthropic", "gemini"],
             index=0,
         )
@@ -147,19 +221,44 @@ def main() -> None:
         provider = make_provider(provider_name)
         selected_model = getattr(provider, "default_model", None)
 
-        max_rounds = st.slider("Max Tool Rounds", 1, 8, 4)
-        history_window = st.slider("History Window", 1, 10, 5)
+        max_rounds = st.slider("Số vòng tối đa", 1, 8, 4)
+        history_window = st.slider("Cửa sổ lịch sử", 1, 10, 5)
 
         st.divider()
-        st.subheader("🛠️ Available Tools")
-        for decl in tool_declarations:
-            with st.expander(f"📌 {decl['name']}"):
-                st.caption(decl.get("description", "")[:150] + "...")
+        st.subheader("🛠️ Công cụ hiện có")
+
+        core_tools = ["clarify", "timeline", "social_search", "lookup", "fetch", "format"]
+        bonus_tools = ["send", "policy", "papers", "paper_text"]
+        extra_tools = ["bookmark", "summarize", "export", "compare"]
+
+        st.markdown("**📌 Core Tools** (bắt buộc)")
+        for name in core_tools:
+            info = TOOL_INFO.get(name, {})
+            icon = info.get("icon", "🔧")
+            vi_name = info.get("vi_name", name)
+            with st.expander(f"{icon} {name} — {vi_name}"):
+                st.code(info.get("example", ""), language=None)
+
+        st.markdown("**⭐ Bonus Tools** (Telegram + arXiv + Policy)")
+        for name in bonus_tools:
+            info = TOOL_INFO.get(name, {})
+            icon = info.get("icon", "🔧")
+            vi_name = info.get("vi_name", name)
+            with st.expander(f"{icon} {name} — {vi_name}"):
+                st.code(info.get("example", ""), language=None)
+
+        st.markdown("**🆕 Extra Tools** (mở rộng)")
+        for name in extra_tools:
+            info = TOOL_INFO.get(name, {})
+            icon = info.get("icon", "🔧")
+            vi_name = info.get("vi_name", name)
+            with st.expander(f"{icon} {name} — {vi_name}"):
+                st.code(info.get("example", ""), language=None)
 
         st.divider()
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("🗑️ Clear Chat", use_container_width=True):
+            if st.button("🗑️ Xóa chat", use_container_width=True):
                 st.session_state.messages = []
                 st.session_state.transcript = {
                     "transcript_id": datetime.now().strftime("%Y%m%dT%H%M%S"),
@@ -168,9 +267,9 @@ def main() -> None:
                 }
                 st.rerun()
         with col2:
-            if st.button("💾 Save Transcript", use_container_width=True):
+            if st.button("💾 Lưu transcript", use_container_width=True):
                 path = save_transcript()
-                st.success(f"Saved: {path.name}")
+                st.success(f"Đã lưu: {path.name}")
 
     chat_container = st.container()
     with chat_container:
@@ -178,7 +277,7 @@ def main() -> None:
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
                 if msg.get("tool_events"):
-                    with st.expander("🔧 Tool Calls Details", expanded=False):
+                    with st.expander("🔧 Chi tiết Tool Calls", expanded=False):
                         for i, evt in enumerate(msg["tool_events"]):
                             tool_name = evt.get("tool", "unknown")
                             tool_args = evt.get("args", {})
@@ -189,7 +288,7 @@ def main() -> None:
                             if i < len(msg["tool_events"]) - 1:
                                 st.divider()
 
-    if user_input := st.chat_input("Ask about research, news, tweets, papers..."):
+    if user_input := st.chat_input("Hỏi về nghiên cứu, tin tức, tweet, paper..."):
         st.session_state.messages.append({"role": "user", "content": user_input})
         with chat_container:
             with st.chat_message("user"):
@@ -223,7 +322,7 @@ def main() -> None:
                     st.markdown(assistant_text)
 
                     if result["tool_events"]:
-                        with st.expander("🔧 Tool Calls Details", expanded=False):
+                        with st.expander("🔧 Chi tiết Tool Calls", expanded=False):
                             for i, evt in enumerate(result["tool_events"]):
                                 tool_name = evt.get("tool", "unknown")
                                 tool_args = evt.get("args", {})
@@ -262,9 +361,9 @@ def main() -> None:
 
     with st.sidebar:
         st.divider()
-        st.subheader("📊 Session Stats")
-        st.metric("Messages", len(st.session_state.messages))
-        st.metric("Turns", len(st.session_state.transcript.get("turns", [])))
+        st.subheader("📊 Thống kê phiên")
+        st.metric("Tin nhắn", len(st.session_state.messages))
+        st.metric("Lượt chat", len(st.session_state.transcript.get("turns", [])))
 
         if st.session_state.transcript.get("turns"):
             total_tools = sum(

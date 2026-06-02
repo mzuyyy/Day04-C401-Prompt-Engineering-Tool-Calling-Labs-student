@@ -1,13 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "GPT-5",
-    "url": "https://openai.com/gpt-5",
-    "note": "",
-    "tags": [],
-    "saved_at": "2026-06-02T14:05:18"
-  },
-  {
     "id": 2,
     "title": "AI 2025",
     "url": "https://arstechnica.com/ai-2025",
@@ -24,5 +16,21 @@
     "note": "",
     "tags": [],
     "saved_at": "2026-06-02T15:08:41"
+  },
+  {
+    "id": 4,
+    "title": "Latest Tweet from Mark Zuckerberg",
+    "url": "https://x.com/finkd/status/1676747594460962817",
+    "note": "This is the latest tweet from Mark Zuckerberg.",
+    "tags": [],
+    "saved_at": "2026-06-02T16:34:07"
+  },
+  {
+    "id": 5,
+    "title": "Revisiting the Power of Prompt for Visual Tuning",
+    "url": "http://arxiv.org/abs/2402.02382v3",
+    "note": "Paper on visual prompt tuning and its improvements.",
+    "tags": [],
+    "saved_at": "2026-06-02T16:37:00"
   }
 ]
